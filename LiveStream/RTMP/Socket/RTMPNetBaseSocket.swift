@@ -13,8 +13,8 @@ public class RTMPBaseNetSocket: NSObject {
     static let maxReadSize = Int(UInt16.max)
     var buffer:UnsafeMutablePointer<UInt8>?
     var inputData = Data()
-    var inputQueue = DispatchQueue(label: "mmRtmp.inputQueue")
-    var outputQueue = DispatchQueue(label: "mmRtmp.outputQueue")
+    var inputQueue = DispatchQueue(label: "liveStream.inputQueue")
+    var outputQueue = DispatchQueue(label: "liveStream.outputQueue")
     var input: InputStream?
     var output: OutputStream?
     

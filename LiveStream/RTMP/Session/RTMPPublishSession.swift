@@ -2,7 +2,7 @@
 //  RTMPPublishSession.swift
 //  LiveStream
 //
-//  Created by Huynh Lam Phu Si on 10/10/19.
+//  Created by CPU11899 on 10/11/19.
 //  Copyright © 2019 ThangNVH. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 public protocol RTMPPublishSessionDelegate: class {
     func sessionMetaData(_ session: RTMPPublishSession) -> [String: Any]
-    func sessionStatusChange(_ session: RTMPPublishSession,  status: RTMPPublishSession.Status)
+    func sessionStatusChange(_ session: RTMPPublishSession, status: RTMPPublishSession.Status)
 }
 
 extension RTMPPublishSession {
@@ -22,13 +22,13 @@ extension RTMPPublishSession {
         case disconnected
     }
 }
+
 public class RTMPPublishSession: NSObject {
     public weak var delegate: RTMPPublishSessionDelegate?
     public var encodeType: ObjectEncodingType = .amf0
-
+    
     var message: PublishMessage?
     public var socket = RTMPSocket()
-
     var timestamp: TimeInterval?
     var h264: H264Encoder?
     var audio: AudioEncoder?
@@ -36,23 +36,18 @@ public class RTMPPublishSession: NSObject {
         super.init()
         socket.delegate = self
     }
-
+    
     public var publishStatus: Status = .unknown {
         didSet {
             delegate?.sessionStatusChange(self, status: publishStatus)
         }
     }
-    
 }
 
 extension RTMPPublishSession {
     @discardableResult
-    public func publishStream(host: String,
-                              port: Int,
-                              name: String,
-                              type: PubishType =  PubishType.live) -> Self {
+    public func publishStream(host : string, port : Int, name: String, type: PublishType = PublishType.live) -> Self {
         socket.connect(host: host, port: port)
-        
         self.h264 = H264Encoder(delegate: self)
         self.audio = AudioEncoder(delegate: self)
         self.publishStatus = .unknown
@@ -60,7 +55,7 @@ extension RTMPPublishSession {
         return self
     }
     
-    public func setVideoSizeIfNeed(_ size: CGSize) {
+    public func setVideoSizeIfNeed(_ size:CGSize) {
         self.h264?.frameSize = size
     }
     
@@ -91,36 +86,32 @@ extension RTMPPublishSession: RTMPSocketDelegate {
     }
     
     func socketGetMeta(_ socket: RTMPSocket, meta: MetaDataResponse) {
-//        self.streamInfo = meta
+        self.streamInfo = meta
     }
+    
     func socketPinRequest(_ socket: RTMPSocket, data: Data) {
         let message = UserControlMessage(type: .pingRequest, data: data)
         self.socket.send(message: message)
     }
     
-    func socketPeerBandWidth(_ socket: RTMPSocket, size: UInt32) {
+    func socketPeerBandWith(_ socket: RTMPSocket, size: UInt32) {
         self.socket.send(message: WindowAckMessage(size: size))
     }
-
+    
     func socketHandShakeDone(_ socket: RTMPSocket) {
         guard let url = socket.info.url else {
             return
         }
-        let connect = ConnectMessage(encodeType: encodeType,
-                                     url: url,
-                                     flashVer: flashVer,
-                                     fpad: false,
-                                     audio: .aac,
-                                     video: .h264)
-        self.socket.info.register(message: connect)
-        self.socket.send(message: connect)
+        
+        let connect = ConnectMessage(encodeType: encodeType, url: url, flashVer: flashVer, fpad: false, audio: .aac, video: .h264)
+        self.socket.info.register(message.connect)
+        self.socket.send(message: message)
     }
     
     func socketConnectDone(_ socket: RTMPSocket, obj: ConnectResponse) {
         let message = CreateStreamMessage(encodeType: encodeType, transactionId: self.socket.info.shiftTransactionId())
         self.socket.info.register(message: message)
         self.socket.send(message: message)
-        
         let size = ChunkSizeMessage(size: chunkSize)
         socket.send(message: size)
     }
@@ -133,43 +124,27 @@ extension RTMPPublishSession: RTMPSocketDelegate {
         self.socket.send(message: m)
         self.publishStatus = .connect
     }
-
+    
     public func socketDisconnected(_ socket: RTMPSocket) {
         self.publishStatus = .disconnected
     }
 }
 
 extension RTMPPublishSession {
-    public func socketStreamPublishStart(_ socket: RTMPSocket) {
-        if let meta = self.delegate?.sessionMetaData(self) {
-            let m = MetaMessage(encodeType: encodeType, msgStreamId: socket.info.connectStatus.connectId, meta: meta)
-            self.socket.send(message: m)
-        }
-        h264?.isStartEncode = true
-        audio?.isStartEncode = true
-    }
-}
-
-extension RTMPPublishSession: H264EncoderDelegate {
-    public func output(encoder: H264Encoder, data: Data, delta: TimeInterval) {
+    public func output(encoder: H264Encoder, data:Data, delta:TimeInterval) {
         let message = VideoMessage(msgStreamId: socket.info.connectStatus.connectId, data: data, timestamp: delta)
         socket.send(message: message, firstType: false)
     }
-
-    public func outputHeader(encoder: H264Encoder, data: Data, time: TimeInterval) {
+    
+    public func outputHeader(encode: H264Encoder, data:Data, time:TimeInterval) {
         let message = VideoMessage(msgStreamId: socket.info.connectStatus.connectId, data: data, timestamp: time)
         socket.send(message: message)
     }
 }
 
 extension RTMPPublishSession: AudioEncoderDelegate {
-    func output(encoder: AudioEncoder, data: Data, delta: TimeInterval) {
-        let message = AudioMessage(msgStreamId: socket.info.connectStatus.connectId, data: data, timestamp: delta)
-        socket.send(message: message, firstType: false)
-    }
-    
-    func outputHeader(encoder: AudioEncoder, data: Data) {
-        let message = AudioMessage(msgStreamId: socket.info.connectStatus.connectId, data: data, timestamp: 0)
+    func output(encoder: AudioEncoder, data:Data, delta: TimeInterval) {
+        let message = AudioMessage(msgStreamId: socket.info.connectSatatus.connectId, data: data, timestamp: 0)
         socket.send(message: message)
     }
 }
