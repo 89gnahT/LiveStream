@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-import  Photos
 
 enum MediaRecorderStatus :Int{
     // Object is newly created and not yet recording
@@ -24,7 +23,7 @@ enum MediaRecorderStatus :Int{
     case stopped
 }
 
-class MediaRecorder: NSObject, CanvasMetalViewDelegate, MicrophoneCaptureDelegate  {
+class MediaRecorder: NSObject {
     var mediaWriter : MediaFileWriter?
     var status : MediaRecorderStatus = .unknow
     let recoderQueue = DispatchQueue(label: "recorder queue")
@@ -33,18 +32,15 @@ class MediaRecorder: NSObject, CanvasMetalViewDelegate, MicrophoneCaptureDelegat
         status = .unknow
     }
     
-    // Call this func to start recording video to save into Photos
+    // Call this func to start recording video
     func startRecording(mediaType : MediaWriterFileType, videoCodecType: AVVideoCodecType, outputSize : CGSize){
         recoderQueue.async {
             if self.status == .unknow || self.status == .stopped{
                 // Start recording
                 self.status = .recording
                 
-                if #available(iOS 11.0, *) {
-                    self.mediaWriter = MediaFIleWriterStore.CreateVideoWriter(mediaType: mediaType, videoCodecType: videoCodecType, outputSize: outputSize)
-                } else {
-                    // Fallback on earlier versions
-                }
+                self.mediaWriter = MediaFIleWriterStore.CreateVideoWriter(mediaType: mediaType, videoCodecType: videoCodecType, outputSize: outputSize)
+                
                 if !(self.mediaWriter?.startWriting() ?? false){
                     print("MediaRecorder: Can't start recording")
                 }else{
@@ -65,7 +61,7 @@ class MediaRecorder: NSObject, CanvasMetalViewDelegate, MicrophoneCaptureDelegat
         }
     }
     
-    // Call this funtion to stop recording, video recoded is stored in Photos
+    // Call this funtion to stop recording
     func stopRecording(completion : @escaping (URL) -> Void){
         recoderQueue.async {
             if self.status == .pausing || self.status == .recording{
@@ -75,7 +71,7 @@ class MediaRecorder: NSObject, CanvasMetalViewDelegate, MicrophoneCaptureDelegat
                 print("MediaRecorder: stopped")
                 
                 self.mediaWriter?.finishWriting(completion: { (url) in
-                    // Copy into Photos
+                    
                     if url != nil{
                         completion(url!)
                         
@@ -85,8 +81,16 @@ class MediaRecorder: NSObject, CanvasMetalViewDelegate, MicrophoneCaptureDelegat
         }
     }
     
-    // MARK: Delegate
-    func didOutputPixelBuffer(_ pixelBuffer: CVPixelBuffer, _ presentationTimeStamp: CMTime, _ duration: CMTime) {
+    // MARK: Input data
+    // Should be call this func in subclass to receive video sampleBuffer
+    func didCaptureVideoSampleBuffer(sampleBuffer : CMSampleBuffer){
+        recoderQueue.async {
+            self.videoAppend(sampleBuffer: sampleBuffer)
+        }
+    }
+    
+    // Should be call this func in subclass to receive video data
+    func didCapture(pixelBuffer: CVPixelBuffer, presentationTimeStamp: CMTime, duration: CMTime){
         recoderQueue.async {
             if self.status != .recording {
                 return
@@ -98,32 +102,33 @@ class MediaRecorder: NSObject, CanvasMetalViewDelegate, MicrophoneCaptureDelegat
         }
     }
     
-    func didCaptureAudioBuffer(_ audioBuffer: CMSampleBuffer) {
+    // Should be call this func in subclass to receive audio sampleBuffer
+    func didCaptureAudioSampleBuffer(sampleBuffer : CMSampleBuffer){
         recoderQueue.async {
-            self.audioAppend(sampleBuffer: audioBuffer)
+            self.audioAppend(sampleBuffer: sampleBuffer)
         }
     }
     
-    // MARK: Helper
     
-    private func videoAppend(sampleBuffer : CMSampleBuffer){
+    // MARK: Helper
+    // Append video sampleBuffer into writer if in recording mode
+    internal func videoAppend(sampleBuffer : CMSampleBuffer){
         if status == .recording{
             mediaWriter?.videoAppend(sampleBuffer: sampleBuffer)
         }
     }
     
-    private func audioAppend(sampleBuffer : CMSampleBuffer){
+    // Append audio sampleBuffer into writer if in recording mode
+    internal func audioAppend(sampleBuffer : CMSampleBuffer){
         if status == .recording{
             mediaWriter?.audioAppend(sampleBuffer: sampleBuffer)
         }
     }
     
-    
-    
+    // Create sampleBuffer from pixel, presentationTime, durationTime
     private func createSampleBufferFrom(pixelBuffer : CVPixelBuffer, presentationTimestamp : CMTime, duration : CMTime) -> CMSampleBuffer?{
         var formatDesc: CMVideoFormatDescription?
         var sampleBuffer: CMSampleBuffer?
-        //print("Height: ",CVPixelBufferGetHeight(pixelBuffer)," width: ",CVPixelBufferGetWidth(pixelBuffer))
         
         CMVideoFormatDescriptionCreateForImageBuffer(allocator: kCFAllocatorDefault, imageBuffer: pixelBuffer, formatDescriptionOut: &formatDesc)
         
@@ -138,5 +143,6 @@ class MediaRecorder: NSObject, CanvasMetalViewDelegate, MicrophoneCaptureDelegat
         }
         return sampleBuffer
     }
-    
 }
+
+

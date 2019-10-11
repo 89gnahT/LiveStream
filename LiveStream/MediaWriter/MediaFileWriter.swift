@@ -40,51 +40,31 @@ class MediaFileWriter: NSObject {
     private var assetWriter: AVAssetWriter?
     private var sessionAtSourceTime: CMTime?
     
-    init(fileType : MediaWriterFileType){
+    init(fileType : MediaWriterFileType, expectsMediaDataInRealTime : Bool = true){
         super.init()
         
-        if setupFileWriter(fileType: fileType){
+        if setupFileWriter(fileType: fileType, expectsMediaDataInRealTime: expectsMediaDataInRealTime){
         }
     }
     
-    init(fileType : MediaWriterFileType, fileExt : String){
+    init(fileType : MediaWriterFileType, fileExt : String, expectsMediaDataInRealTime : Bool = true){
         super.init()
         
-        if setupFileWriter(fileType: fileType, fileExt: fileExt){
-        }
-    }
-    
-    init(videoWriterInput : AVAssetWriterInput?, audioWriterInput : AVAssetWriterInput?, fileType : MediaWriterFileType){
-        super.init()
-        
-        self.videoAssetWriterInput = videoWriterInput
-        self.audioAssetWriterInput = audioWriterInput
-        
-        if setupFileWriter(fileType: fileType){
-        }
-    }
-    
-    init(videoWriterInput : AVAssetWriterInput?, audioWriterInput : AVAssetWriterInput?, fileType : MediaWriterFileType, fileExt : String){
-        super.init()
-        
-        self.videoAssetWriterInput = videoWriterInput
-        self.audioAssetWriterInput = audioWriterInput
-        
-        if setupFileWriter(fileType: fileType, fileExt: fileExt){
+        if setupFileWriter(fileType: fileType, fileExt: fileExt, expectsMediaDataInRealTime: expectsMediaDataInRealTime){
         }
     }
     
     /**
      This func must be called before creating data input
      */
-    private func setupFileWriter(fileType : MediaWriterFileType) -> Bool{
-        return setupFileWriter(fileType: fileType, fileExt: MediaFileWriter.getFileExtentionFrom(fileType: fileType))
+    private func setupFileWriter(fileType : MediaWriterFileType, expectsMediaDataInRealTime : Bool) -> Bool{
+        return setupFileWriter(fileType: fileType, fileExt: MediaFileWriter.getFileExtentionFrom(fileType: fileType), expectsMediaDataInRealTime: expectsMediaDataInRealTime)
     }
     
     /**
      This func must be called before creating data input
      */
-    private func setupFileWriter(fileType : MediaWriterFileType, fileExt : String) -> Bool{
+    private func setupFileWriter(fileType : MediaWriterFileType, fileExt : String, expectsMediaDataInRealTime : Bool) -> Bool{
         var success = true
         
         writerQueue.sync {
@@ -94,11 +74,13 @@ class MediaFileWriter: NSObject {
             let filePath = path + "/" + fileName
             let fileURL = URL(fileURLWithPath: filePath)
             
+            self.expectsMediaDataInRealTime = expectsMediaDataInRealTime
+            
             do{
                 assetWriter = try AVAssetWriter(url:fileURL, fileType: MediaFileWriter.getAVFileTypeFrom(fileType: fileType))
             }catch{
                 success = false
-                print("create AVAssetWriter failed")
+                print("Create AVAssetWriter failed")
             }
         }
         
@@ -109,15 +91,13 @@ class MediaFileWriter: NSObject {
     
     func createNewDefaultVideoInput() -> Bool{
         if #available(iOS 11.0, *) {
-            return createNewVideoInput(videoCodecType: .h264, outputSize: CGSize(width: 640, height: 480))
+            return createNewVideoInput(videoCodecType: .h264, outputSize: CGSize(width: 480, height: 640))
         } else {
-            return false
-            // Fallback on earlier versions
+            return createNewVideoInput(videoCodecType: AVVideoCodecType(rawValue: AVVideoCodecH264), outputSize: CGSize(width: 480, height: 640))
         }
     }
     
     func createNewDefaultAudioInput() -> Bool{
-        
         return createNewAudioInput(audioFormat: kAudioFormatMPEG4AAC, numberOfChannels: 1, sampleRate: 44100)
     }
     
@@ -172,13 +152,15 @@ class MediaFileWriter: NSObject {
         return success
     }
     
+    
     // MARK: Control
     
     func startWriting() -> Bool{
         var success = false
         
         writerQueue.sync {
-            if assetWriter != nil{
+            if assetWriter != nil, status != .writing{
+                
                 success = (assetWriter?.startWriting())!
             }
         }
@@ -190,7 +172,6 @@ class MediaFileWriter: NSObject {
      @method finishWritingWithCompletionHandler:
      @abstract
      Marks all unfinished inputs as finished and completes the writing of the output file.
-     After call this function, this Object will be reseted
      */
     func finishWriting(completion : @escaping (URL?) -> Void){
         writerQueue.async {
@@ -201,24 +182,14 @@ class MediaFileWriter: NSObject {
                     
                     completion(url)
                     
-                    self?.clearAll()
                 }
             }
         }
     }
     
-    private func clearAll(){
-        assetWriter = nil
-        videoAssetWriterInput = nil
-        audioAssetWriterInput = nil
-        expectsMediaDataInRealTime = true
-        fileType = nil
-        fileExt = nil
-        sessionAtSourceTime = nil
-    }
+    //MARK: Append data
     
-    //MARK: AppendSample
-    
+    // Append video sampleBuffer into AssetWriterInput
     func videoAppend(sampleBuffer : CMSampleBuffer){
         writerQueue.async {
             if self.videoAssetWriterInput == nil, self.status != .writing{
@@ -235,6 +206,7 @@ class MediaFileWriter: NSObject {
         }
     }
     
+    // Append audio sampleBuffer into AssetWriterInput
     func audioAppend(sampleBuffer : CMSampleBuffer){
         writerQueue.async {
             if self.audioAssetWriterInput == nil, self.status != .writing{

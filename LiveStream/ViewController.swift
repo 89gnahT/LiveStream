@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     var avCaptureModule: AVCaptureModule?
     var filter : FilterVideo = FilterVideo()
-    var mediaRecorder = MediaRecorder()
+    var mediaRecorder = LiveStreamMediaRecorder()
     var isRecording = false
     var startRecordingTime : TimeInterval?
     var displayLink : CADisplayLink?

@@ -39,6 +39,7 @@
 		81E336E4233E1EF800137FB1 /* MicrophoneCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E336E1233E1E2C00137FB1 /* MicrophoneCapture.swift */; };
 		DD058BB623472CD80047F93E /* VideoEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD058BB523472CD80047F93E /* VideoEncoder.swift */; };
 		DD058BB823472CE20047F93E /* AudioEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD058BB723472CE20047F93E /* AudioEncoder.swift */; };
+		DD48108F235021A80066FCB9 /* LiveStreamMediaRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD48108E235021A80066FCB9 /* LiveStreamMediaRecorder.swift */; };
 		DDFB4D462345F82400A91607 /* MediaFileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFB4D452345F82400A91607 /* MediaFileWriter.swift */; };
 		DDFB4D482345F84000A91607 /* MediaFileWriterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFB4D472345F84000A91607 /* MediaFileWriterStore.swift */; };
 		DDFB4D4A2345FC6B00A91607 /* MediaRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFB4D492345FC6B00A91607 /* MediaRecorder.swift */; };
@@ -100,6 +101,7 @@
 		81E336E1233E1E2C00137FB1 /* MicrophoneCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneCapture.swift; sourceTree = "<group>"; };
 		DD058BB523472CD80047F93E /* VideoEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEncoder.swift; sourceTree = "<group>"; };
 		DD058BB723472CE20047F93E /* AudioEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEncoder.swift; sourceTree = "<group>"; };
+		DD48108E235021A80066FCB9 /* LiveStreamMediaRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamMediaRecorder.swift; sourceTree = "<group>"; };
 		DDFB4D452345F82400A91607 /* MediaFileWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFileWriter.swift; sourceTree = "<group>"; };
 		DDFB4D472345F84000A91607 /* MediaFileWriterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFileWriterStore.swift; sourceTree = "<group>"; };
 		DDFB4D492345FC6B00A91607 /* MediaRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRecorder.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				DDFB4D452345F82400A91607 /* MediaFileWriter.swift */,
 				DDFB4D472345F84000A91607 /* MediaFileWriterStore.swift */,
 				DDFB4D492345FC6B00A91607 /* MediaRecorder.swift */,
+				DD48108E235021A80066FCB9 /* LiveStreamMediaRecorder.swift */,
 			);
 			path = MediaWriter;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				8114B4682345D9E30001D527 /* CanvasMetalView.swift in Sources */,
 				72A1F5362340AFCE000B318D /* H264Encoder.swift in Sources */,
 				81974A222342065E00BB2DE3 /* MediaEncoder.swift in Sources */,
+				DD48108F235021A80066FCB9 /* LiveStreamMediaRecorder.swift in Sources */,
 				8114B4562345D2170001D527 /* LowContract.swift in Sources */,
 				DD058BB623472CD80047F93E /* VideoEncoder.swift in Sources */,
 				81E336E4233E1EF800137FB1 /* MicrophoneCapture.swift in Sources */,
