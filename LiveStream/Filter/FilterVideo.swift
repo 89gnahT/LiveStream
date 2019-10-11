@@ -34,7 +34,7 @@ class FilterVideo: NSObject, CameraCaptureDelegate {
     
     override init() {
         super.init()
-        videoFilterOn = false
+        videoFilterOn = true
         self.videoFilterOnOff()
     }
     
