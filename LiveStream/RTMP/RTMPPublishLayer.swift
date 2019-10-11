@@ -10,6 +10,8 @@ import Foundation
 import AVFoundation
 
 public class RTMPPublishLayer: AVCaptureVideoPreviewLayer {
+    
+    var capture = AVCaptureModule()
     fileprivate var statusCallBack: ((RTMPPublishSession.Status)->Void?)?
     public var publishSession =  RTMPPublishSession()
     
@@ -68,39 +70,6 @@ extension RTMPPublishLayer {
     public func publishStatus(callBack: ((RTMPPublishSession.Status)->Void)?) {
         statusCallBack = callBack
     }
-
-    public func authVideoAudio(completed: @escaping (Bool)->Void) {
-        DispatchQueue.main.async { [unowned self] in
-            let video = AVCaptureDevice.authorizationStatus(for: .video)
-            let audio = AVCaptureDevice.authorizationStatus(for: .audio)
-            self.auth(video: video, audio: audio, completed: completed)
-        }
-    }
-
-    fileprivate func auth(video: AVAuthorizationStatus, audio: AVAuthorizationStatus, completed: @escaping (Bool)->Void) {
-        switch (video, audio) {
-        case (.authorized, .authorized):
-            self.setup()
-            completed(true)
-        case (.notDetermined, _), (_, .notDetermined):
-            let group = DispatchGroup.init()
-            group.enter()
-            AVCaptureDevice.requestAccess(for: .video) { (rc) in
-                group.leave()
-            }
-            group.enter()
-            AVCaptureDevice.requestAccess(for: .audio) { (rc) in
-                group.leave()
-            }
-            group.notify(queue: DispatchQueue.main) {
-                let video = AVCaptureDevice.authorizationStatus(for: .video)
-                let audio = AVCaptureDevice.authorizationStatus(for: .audio)
-                self.auth(video: video, audio: audio, completed: completed)
-            }
-        default:
-            completed(false)
-        }
-    }
     
     public func publish(host: String, name: String, port:Int = defaultPort) {
         publishSession.publishStream(host: host, port: port, name: name).resume()
@@ -129,34 +98,46 @@ extension RTMPPublishLayer {
         } catch {
             return
         }
-        
+        self.videoFPS = 30
+        /*
         self.session?.sessionPreset = .medium
         self.session?.addOutput(videoOutput)
         self.session?.addOutput(audioOutput)
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue.main)
         audioOutput.setSampleBufferDelegate(self, queue: DispatchQueue.main)
-        self.videoFPS = 30
         if self.session?.isRunning == false {
             self.session?.startRunning()
-        }
+        }*/
+    }
+}
+extension RTMPPublishLayer: MicrophoneCaptureDelegate {
+    func didCaptureAudioBuffer(_ audioBuffer: CMSampleBuffer) {
+        self.publishSession.publishAudio(buffer: audioBuffer)
     }
 }
 
-extension RTMPPublishLayer: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate {
-    public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        switch output {
-        case _ as AVCaptureAudioDataOutput:
-            self.publishSession.publishAudio(buffer: sampleBuffer)
-        case _ as AVCaptureVideoDataOutput:
-            //self.connection?.videoOrientation = UIDevice.current.orientation.avcaptureOrientation
-            //self.connection.videoOrientation = UIDevice.current.orientation.avcaptureOrientation
-            self.publishSession.setVideoSizeIfNeed(self.bounds.size)
-            self.publishSession.publishVideo(buffer: sampleBuffer)
-        default:
-            break
+extension RTMPPublishLayer: CanvasMetalViewDelegate {
+    func didOutputPixelBuffer(_ pixelBuffer: CVPixelBuffer, _ presentationTimeStamp: CMTime, _ duration: CMTime) {
+        
+        var formatDesc: CMVideoFormatDescription?
+        var sampleBuffer: CMSampleBuffer?
+        
+        CMVideoFormatDescriptionCreateForImageBuffer(allocator: kCFAllocatorDefault, imageBuffer: pixelBuffer, formatDescriptionOut: &formatDesc)
+        
+        if formatDesc != nil  {
+            var sampleTiming = CMSampleTimingInfo.init(duration: duration, presentationTimeStamp: presentationTimeStamp, decodeTimeStamp: CMTime.invalid)
+            CMSampleBufferCreateReadyWithImageBuffer(allocator: kCFAllocatorDefault,
+                                                     imageBuffer: pixelBuffer,
+                                                     formatDescription: formatDesc!,
+                                                     sampleTiming: &sampleTiming,
+                                                     sampleBufferOut: &sampleBuffer)
         }
+        self.publishSession.setVideoSizeIfNeed(self.bounds.size)
+        self.publishSession.publishVideo(buffer: sampleBuffer!)
+        let videoPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer!)
     }
 }
+    
 
 extension RTMPPublishLayer: RTMPPublishSessionDelegate {
     public func sessionMetaData(_ session: RTMPPublishSession) -> [String : Any] {
