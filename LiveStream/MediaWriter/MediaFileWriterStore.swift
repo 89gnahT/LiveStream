@@ -11,13 +11,13 @@ import AVFoundation
 
 
 class MediaFIleWriterStore: NSObject {
-    class func CreateVideoWriter(mediaType : MediaWriterFileType, videoCodecType: AVVideoCodecType, outputSize : CGSize) -> MediaFileWriter?{
+    class func CreateVideoWriter(mediaType : MediaWriterFileType, videoCodecType: AVVideoCodecType, outputSize : CGSize, transformRotationDegreeAngle : Double = 0) -> MediaFileWriter?{
         var videoWriter : MediaFileWriter?
         
         if mediaType == .MP4 || mediaType == .M4V{
             videoWriter = MediaFileWriter(fileType: mediaType)
             _ = videoWriter?.createNewDefaultAudioInput()
-            _ = videoWriter?.createNewVideoInput(videoCodecType: videoCodecType, outputSize: outputSize)
+            _ = videoWriter?.createNewVideoInput(videoCodecType: videoCodecType, outputSize: outputSize, transformRotationDegreeAngle: transformRotationDegreeAngle)
         }
         
         return videoWriter!
