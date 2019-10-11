@@ -63,7 +63,7 @@
 		C20989AD2350250E00DDEF69 /* RTMP+AMF3+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209894A2350250E00DDEF69 /* RTMP+AMF3+Data.swift */; };
 		C20989AE2350250E00DDEF69 /* RTMP+AMF3+UInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209894B2350250E00DDEF69 /* RTMP+AMF3+UInt.swift */; };
 		C20989AF2350250E00DDEF69 /* RTMP+AMF3+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209894C2350250E00DDEF69 /* RTMP+AMF3+Double.swift */; };
-		C20989B02350250E00DDEF69 /* RTMPPublish.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209894D2350250E00DDEF69 /* RTMPPublish.swift */; };
+		C20989B02350250E00DDEF69 /* RTMPPublishLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209894D2350250E00DDEF69 /* RTMPPublishLayer.swift */; };
 		C20989B12350250E00DDEF69 /* RTMP+CMAudioFormatDescription+Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989502350250E00DDEF69 /* RTMP+CMAudioFormatDescription+Parameter.swift */; };
 		C20989B22350250E00DDEF69 /* TimeInterval+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989522350250E00DDEF69 /* TimeInterval+Convert.swift */; };
 		C20989B32350250E00DDEF69 /* RTMP+Array+SafeElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989542350250E00DDEF69 /* RTMP+Array+SafeElement.swift */; };
@@ -196,7 +196,7 @@
 		C209894A2350250E00DDEF69 /* RTMP+AMF3+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+Data.swift"; sourceTree = "<group>"; };
 		C209894B2350250E00DDEF69 /* RTMP+AMF3+UInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+UInt.swift"; sourceTree = "<group>"; };
 		C209894C2350250E00DDEF69 /* RTMP+AMF3+Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+Double.swift"; sourceTree = "<group>"; };
-		C209894D2350250E00DDEF69 /* RTMPPublish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPPublish.swift; sourceTree = "<group>"; };
+		C209894D2350250E00DDEF69 /* RTMPPublishLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPPublishLayer.swift; sourceTree = "<group>"; };
 		C20989502350250E00DDEF69 /* RTMP+CMAudioFormatDescription+Parameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+CMAudioFormatDescription+Parameter.swift"; sourceTree = "<group>"; };
 		C20989522350250E00DDEF69 /* TimeInterval+Convert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Convert.swift"; sourceTree = "<group>"; };
 		C20989542350250E00DDEF69 /* RTMP+Array+SafeElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+Array+SafeElement.swift"; sourceTree = "<group>"; };
@@ -373,7 +373,7 @@
 		C209892A2350250E00DDEF69 /* RTMP */ = {
 			isa = PBXGroup;
 			children = (
-				C209894D2350250E00DDEF69 /* RTMPPublish.swift */,
+				C209894D2350250E00DDEF69 /* RTMPPublishLayer.swift */,
 				C209898C2350250E00DDEF69 /* RTMPDefine.swift */,
 				C20989912350250E00DDEF69 /* Session */,
 				C209898E2350250E00DDEF69 /* Message */,
@@ -891,7 +891,7 @@
 				C20989B22350250E00DDEF69 /* TimeInterval+Convert.swift in Sources */,
 				8114B4562345D2170001D527 /* LowContract.swift in Sources */,
 				C20989AA2350250E00DDEF69 /* AMF3ReferenceTable.swift in Sources */,
-				C20989B02350250E00DDEF69 /* RTMPPublish.swift in Sources */,
+				C20989B02350250E00DDEF69 /* RTMPPublishLayer.swift in Sources */,
 				C20989A72350250E00DDEF69 /* AMF0Object.swift in Sources */,
 				C20989BC2350250E00DDEF69 /* AudioQueueCollection.swift in Sources */,
 				81E336E4233E1EF800137FB1 /* MicrophoneCapture.swift in Sources */,

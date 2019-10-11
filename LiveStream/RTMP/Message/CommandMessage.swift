@@ -207,9 +207,9 @@ class Play2Message: CommandMessage {
 
 
 class PublishMessage: CommandMessage, ChunkEncoderTypeProtocol {
-    let type: PubishType
+    let type: PublishType
     let streamName: String
-    init(encodeType: ObjectEncodingType = .amf0, streamName: String, type: PubishType) {
+    init(encodeType: ObjectEncodingType = .amf0, streamName: String, type: PublishType) {
         self.streamName = streamName
         self.type = type
         super.init(encodeType: encodeType, commandName: "publish", transactionId: commonTransactionId.stream)

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-public enum PubishType: String {
+public enum PublishType: String {
     case live = "live"
     case record = "record"
     case append = "append"
