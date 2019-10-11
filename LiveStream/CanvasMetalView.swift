@@ -23,8 +23,8 @@ class CanvasMetalView: MTKView, FilterVideoDelegate {
     var RTMPDelegate: CanvasMetalViewDelegate?
     func didCapturePixelBuffer(_ pixelBuffer: CVPixelBuffer, _ presentationTimeStamp: CMTime, _ duration: CMTime) {
         self.pixelBuffer = pixelBuffer
-//        filterDelegate?.didOutputPixelBuffer(pixelBuffer, presentationTimeStamp, duration)
-        RTMPDelegate?.didOutputPixelBuffer(pixelBuffer, presentationTimeStamp, duration)
+        filterDelegate?.didOutputPixelBuffer(pixelBuffer, presentationTimeStamp, duration)
+        //RTMPDelegate?.didOutputPixelBuffer(pixelBuffer, presentationTimeStamp, duration)
 
         
     }

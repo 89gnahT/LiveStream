@@ -32,7 +32,7 @@ class LiveStreamMediaRecorder: MediaRecorder, CanvasMetalViewDelegate, Microphon
     
     
     func didOutputPixelBuffer(_ pixelBuffer: CVPixelBuffer, _ presentationTimeStamp: CMTime, _ duration: CMTime) {
-        //print("height ", CVPixelBufferGetHeight(pixelBuffer), " width ", CVPixelBufferGetWidth(pixelBuffer))
+        print("height ", CVPixelBufferGetHeight(pixelBuffer), " width ", CVPixelBufferGetWidth(pixelBuffer))
         super.didCapture(pixelBuffer: pixelBuffer, presentationTimeStamp: presentationTimeStamp, duration: duration)
     }
     
