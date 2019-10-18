@@ -99,15 +99,6 @@ extension RTMPPublishLayer {
             return
         }
         self.videoFPS = 30
-        /*
-        self.session?.sessionPreset = .medium
-        self.session?.addOutput(videoOutput)
-        self.session?.addOutput(audioOutput)
-        videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue.main)
-        audioOutput.setSampleBufferDelegate(self, queue: DispatchQueue.main)
-        if self.session?.isRunning == false {
-            self.session?.startRunning()
-        }*/
     }
 }
 extension RTMPPublishLayer: MicrophoneCaptureDelegate {
@@ -132,9 +123,11 @@ extension RTMPPublishLayer: CanvasMetalViewDelegate {
                                                      sampleTiming: &sampleTiming,
                                                      sampleBufferOut: &sampleBuffer)
         }
-        self.publishSession.setVideoSizeIfNeed(self.bounds.size)
+        let width = CVPixelBufferGetWidth(pixelBuffer)
+        let height = CVPixelBufferGetHeight(pixelBuffer)
+        self.publishSession.setVideoSizeIfNeed(CGSize(width: width, height: height))
         self.publishSession.publishVideo(buffer: sampleBuffer!)
-        let videoPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer!)
+        //let videoPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer!)
     }
 }
     

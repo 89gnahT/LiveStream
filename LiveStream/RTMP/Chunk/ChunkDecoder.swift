@@ -14,7 +14,7 @@ enum RTMPMessageDecodeStatus {
 }
 
 class ChunkDecoder {
-    let decodeQueue = DispatchQueue(label: "mmRtmp.rtmpDecoder")
+    let decodeQueue = DispatchQueue(label: "liveStream.rtmpDecoder")
     var chunkSize: UInt32 = UInt32(maxChunkSize)
     var map = [Int:RTMPChunkHeader]()
     var chunkBlock:((RTMPChunkHeader)->Void)?

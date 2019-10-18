@@ -72,6 +72,7 @@ extension RTMPPublishSession {
     }
     
     public func invalidate() {
+        self.socketStreamEnd(_socket: socket)
         self.socket.invalidate()
         self.message = nil
         self.publishStatus = .unknown
@@ -139,6 +140,11 @@ extension RTMPPublishSession {
         }
         h264?.isStartEncode = true
         audio?.isStartEncode = true
+    }
+    
+    public func socketStreamEnd(_socket: RTMPSocket) {
+        let m = DeleteStreamMessage(encodeType: encodeType, streamId: socket.info.connectStatus.connectId, commonObject: nil)
+        self.socket.send(message: m)
     }
 }
 

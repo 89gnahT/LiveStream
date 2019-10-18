@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak private var previewView: CanvasMetalView!
     
-    let host: String = "rtmp://192.168.43.207/live"
+    let host: String = "rtmp://192.168.1.237/live"
     let name: String = "stream1"
     
     @IBOutlet weak var toggleButton: UISwitch!

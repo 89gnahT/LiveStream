@@ -19,7 +19,7 @@ protocol AACDecoderDelegate: class {
 }
 
 public class AACDecoder {
-    let queue = DispatchQueue.init(label: "mmRtmp.AACDecoder.lock")
+    let queue = DispatchQueue.init(label: "liveStream.AACDecoder.lock")
 
     var audioSpecConfig: AudioSpecificConfig?
     var streamDesc: AudioStreamBasicDescription?

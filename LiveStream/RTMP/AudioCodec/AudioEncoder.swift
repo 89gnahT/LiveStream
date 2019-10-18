@@ -33,7 +33,7 @@ class AudioEncoder {
     }
 
 
-    let audioQueue = DispatchQueue(label: "mmrtmp.encode.aac")
+    let audioQueue = DispatchQueue(label: "liveStream.encode.aac")
     unowned let delegate: AudioEncoderDelegate
     var bufferListParameter = (maxSize: 1, listSize: AudioBufferList.sizeInBytes(maximumBuffers: 1))
     fileprivate var currentBufferList: UnsafeMutableAudioBufferListPointer?

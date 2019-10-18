@@ -8,6 +8,7 @@
 
 import Foundation
 import VideoToolbox
+
 public protocol H264EncoderDelegate: class {
     func outputHeader(encoder: H264Encoder, data: Data, time: TimeInterval)
     func output(encoder: H264Encoder, data: Data, delta: TimeInterval)
@@ -140,4 +141,3 @@ public class H264Encoder {
         }
     }
 }
-

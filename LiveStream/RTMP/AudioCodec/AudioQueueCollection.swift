@@ -26,7 +26,7 @@ public class AudioQueueCollection {
     private var start = false
     public var bufferSize: UInt32
     public var outputQueue: AudioQueueRef?
-    public var audioQueue = DispatchQueue(label: "mmRtmp.audioQueue")
+    public var audioQueue = DispatchQueue(label: "liveStream.audioQueue")
     public let startTime: Int64
     public var streamDesc: AudioStreamBasicDescription
     var bufferCount: Int = 0
