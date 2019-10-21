@@ -111,33 +111,36 @@ public class H264Encoder {
             return
         }
         var flags:VTEncodeInfoFlags = VTEncodeInfoFlags()
-
-        VTCompressionSessionEncodeFrame(s, imageBuffer: imageBuffer, presentationTimeStamp: buffer.presentedTimestamp, duration: buffer.duration, frameProperties: nil, infoFlagsOut: &flags) { [weak self] (status, flag, buffer) in
+        
+        VTCompressionSessionEncodeFrame(s, imageBuffer: imageBuffer, presentationTimeStamp: buffer.presentedTimestamp, duration: buffer.duration, frameProperties: nil, infoFlagsOut: &flags, outputHandler: {[weak self] (status, flag, buffer) in
             guard let b = buffer, let self = self else {
-                return
-            }
-            let new = CMSampleBufferGetFormatDescription(b)
-            if !CMFormatDescriptionEqual(self.formatDescription, otherFormatDescription: new) {
-                if self.time.start == 0 {
-                    self.time.start = b.presentedTimestamp.seconds
-                }
-                self.time.lastInterval = b.presentedTimestamp.seconds
-                self.formatDescription = new
-            }
-    
-            guard let bufferData = CMSampleBufferGetDataBuffer(b)?.data else {
-                return
-            }
-            let delta = (b.presentedTimestamp.seconds-self.time.lastInterval).millSecond
-            var descData = Data()
-            let frameType = b.isKeyFrame ? VideoData.FrameType.keyframe : VideoData.FrameType.inter
-            let frameAndCode:UInt8 = UInt8(frameType.rawValue << 4 | VideoData.CodecId.avc.rawValue)
-            descData.extendWrite.write(frameAndCode)
-                .write(VideoData.AVCPacketType.nalu.rawValue)
-                .writeU24(Int(delta))
-                .write(bufferData)
-            self.time.lastInterval = b.presentedTimestamp.seconds
-            self.delegate.output(encoder: self, data: descData, delta: delta)
-        }
+                        return
+                    }
+                    let new = CMSampleBufferGetFormatDescription(b)
+                    if !CMFormatDescriptionEqual(self.formatDescription, otherFormatDescription: new) {
+                        if self.time.start == 0 {
+                            self.time.start = b.presentedTimestamp.seconds
+                        }
+                        self.time.lastInterval = b.presentedTimestamp.seconds
+                        self.formatDescription = new
+                    }
+            
+                    guard let bufferData = CMSampleBufferGetDataBuffer(b)?.data else {
+                        return
+                    }
+                    let delta = (b.presentedTimestamp.seconds-self.time.lastInterval).millSecond
+                    var descData = Data()
+                    let frameType = b.isKeyFrame ? VideoData.FrameType.keyframe : VideoData.FrameType.inter
+                    let frameAndCode:UInt8 = UInt8(frameType.rawValue << 4 | VideoData.CodecId.avc.rawValue)
+                    descData.extendWrite.write(frameAndCode)
+                        .write(VideoData.AVCPacketType.nalu.rawValue)
+                        .writeU24(Int(delta))
+                        .write(bufferData)
+                    self.time.lastInterval = b.presentedTimestamp.seconds
+                    self.delegate.output(encoder: self, data: descData, delta: delta)
+        })
+//        VTCompressionSessionEncodeFrame(s, imageBuffer: imageBuffer, presentationTimeStamp: buffer.presentedTimestamp, duration: buffer.duration, frameProperties: nil, infoFlagsOut: &flags) { [weak self] (status, flag, buffer) in
+//            
+//        }
     }
 }

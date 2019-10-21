@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import UIKit
 
 public class RTMPPublishLayer: AVCaptureVideoPreviewLayer {
     
@@ -108,7 +109,7 @@ extension RTMPPublishLayer: MicrophoneCaptureDelegate {
 }
 
 extension RTMPPublishLayer: CanvasMetalViewDelegate {
-    func didOutputPixelBuffer(_ pixelBuffer: CVPixelBuffer, _ presentationTimeStamp: CMTime, _ duration: CMTime) {
+    func didOutputPixelBuffer(_ pixelBuffer: CVPixelBuffer, _ presentationTimeStamp: CMTime, _ duration: CMTime, _ frameSize : CGSize) {
         
         var formatDesc: CMVideoFormatDescription?
         var sampleBuffer: CMSampleBuffer?
@@ -123,11 +124,8 @@ extension RTMPPublishLayer: CanvasMetalViewDelegate {
                                                      sampleTiming: &sampleTiming,
                                                      sampleBufferOut: &sampleBuffer)
         }
-        let width = CVPixelBufferGetWidth(pixelBuffer)
-        let height = CVPixelBufferGetHeight(pixelBuffer)
-        self.publishSession.setVideoSizeIfNeed(CGSize(width: width, height: height))
+        self.publishSession.setVideoSizeIfNeed(frameSize)
         self.publishSession.publishVideo(buffer: sampleBuffer!)
-        //let videoPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer!)
     }
 }
     

@@ -66,16 +66,29 @@ public class RTMPBaseNetSocket: NSObject {
             guard let o = self?.output else {
                 return
             }
-            data.withUnsafeBytes { (buffer: UnsafePointer<UInt8>) -> Void in
+            data.withUnsafeBytes({(buffer : UnsafeRawBufferPointer) -> Void in
                 var total: Int = 0
+                let unsafeBufferPointer = buffer.bindMemory(to: UInt8.self)
+                let unsafePointer = unsafeBufferPointer.baseAddress!
                 while total < data.count {
-                    let length = o.write(buffer.advanced(by: total), maxLength: data.count)
+                    let length = o.write(unsafePointer.advanced(by: total), maxLength: data.count)
                     if length <= 0 {
                         break
                     }
                     total += length
                 }
-            }
+            })
+            
+//            data.withUnsafeBytes({(buffer : UnsafePointer<UInt8>) -> Void in
+//                var total: Int = 0
+//                while total < data.count {
+//                    let length = o.write(buffer.advanced(by: total), maxLength: data.count)
+//                    if length <= 0 {
+//                        break
+//                    }
+//                    total += length
+//                }
+//            })
         }
     }
 }

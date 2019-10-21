@@ -13,7 +13,7 @@ import CoreMedia
 import AVFoundation
 
 protocol CanvasMetalViewDelegate {
-    func didOutputPixelBuffer(_ pixelBuffer: CVPixelBuffer, _ presentationTimeStamp: CMTime, _ duration: CMTime)
+    func didOutputPixelBuffer(_ pixelBuffer: CVPixelBuffer, _ presentationTimeStamp: CMTime, _ duration: CMTime, _ frameSize : CGSize)
 }
 
 
@@ -24,7 +24,7 @@ class CanvasMetalView: MTKView, FilterVideoDelegate {
     func didCapturePixelBuffer(_ pixelBuffer: CVPixelBuffer, _ presentationTimeStamp: CMTime, _ duration: CMTime) {
         self.pixelBuffer = pixelBuffer
 //        filterDelegate?.didOutputPixelBuffer(pixelBuffer, presentationTimeStamp, duration)
-        RTMPDelegate?.didOutputPixelBuffer(pixelBuffer, presentationTimeStamp, duration)
+        RTMPDelegate?.didOutputPixelBuffer(pixelBuffer, presentationTimeStamp, duration, self.bounds.size)
 
         
     }

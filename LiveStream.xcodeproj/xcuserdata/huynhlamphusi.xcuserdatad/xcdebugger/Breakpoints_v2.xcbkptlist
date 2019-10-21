@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "115"
             endingLineNumber = "115"
-            landmarkName = "didCaptureAudioBuffer(_:)"
+            landmarkName = "didOutputPixelBuffer(_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -88,7 +88,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "9E612E2C-D3D9-4B7B-B628-C8EF867CDEED"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LiveStream/RTMP/Session/RTMPPublishSession.swift"
@@ -104,7 +104,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "9067B906-DF58-41EC-9E54-E4A9593D475F"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LiveStream/RTMP/Session/RTMPPublishSession.swift"
@@ -366,25 +366,9 @@
             filePath = "LiveStream/RTMP/RTMPPublishLayer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "didOutputPixelBuffer(_:_:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8A850A85-B16C-443D-AAEF-945FDCF1EE9C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LiveStream/RTMP/VideoCodec/H264Encoder.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "encode(buffer:)"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "sessionMetaData(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -392,7 +376,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "24D67187-1BAE-4162-9AA9-64E7268E6258"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LiveStream/RTMP/VideoCodec/H264Encoder.swift"
@@ -407,32 +391,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "16DCBC30-22DE-419A-B687-DBF0E4566B41"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LiveStream/RTMP/VideoCodec/H264Encoder.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "encode(buffer:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8C841147-4D1F-4269-BF96-F92C3B47F348"
+            uuid = "DE319FCF-80F8-4494-989E-688C6390DA21"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LiveStream/RTMP/VideoCodec/H264Encoder.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "encode(buffer:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DE319FCF-80F8-4494-989E-688C6390DA21 - 63da1e7b403e758f"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LiveStream.H264Encoder.encode(buffer: __C.CMSampleBufferRef) -&gt; ()"
+                  moduleName = "LiveStream"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Lacie/Zalo/LiveStream/LiveStream/RTMP/VideoCodec/H264Encoder.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "1556">
+               </Location>
+               <Location
+                  uuid = "DE319FCF-80F8-4494-989E-688C6390DA21 - 11492f2244c70ee0"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int32, __C.VTEncodeInfoFlags, Swift.Optional&lt;__C.CMSampleBufferRef&gt;) -&gt; () in LiveStream.H264Encoder.encode(buffer: __C.CMSampleBufferRef) -&gt; ()"
+                  moduleName = "LiveStream"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Lacie/Zalo/LiveStream/LiveStream/RTMP/VideoCodec/H264Encoder.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "304">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BD008E55-080E-441C-BBDE-E91344B68F2E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LiveStream/RTMP/RTMPPublishLayer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "didOutputPixelBuffer(_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
