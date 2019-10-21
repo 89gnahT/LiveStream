@@ -121,35 +121,17 @@ public class H264Decoder {
             }
             var d = data.advanced(by: 5)
             let origin = d.count
-            d.withUnsafeMutableBytes { [unowned self] (bytes: UnsafeMutablePointer<UInt8>) -> Void in
-                var block: CMBlockBuffer?
-                if CMBlockBufferCreateWithMemoryBlock(allocator: kCFAllocatorDefault,
-                                                      memoryBlock: bytes,
-                                                      blockLength: origin,
-                                                      blockAllocator: kCFAllocatorNull,
-                                                      customBlockSource: nil,
-                                                      offsetToData: 0,
-                                                      dataLength: origin, flags: 0,
-                                                      blockBufferOut: &block) != noErr {
+            d.withUnsafeMutableBytes({[unowned self] (bytes : UnsafeMutableRawBufferPointer) -> Void in
+                var block : CMBlockBuffer?
+                let unsafeMutableBufferPointer = bytes.bindMemory(to: UInt8.self)
+                let unsafeMutablePointer = unsafeMutableBufferPointer.baseAddress!
+                if CMBlockBufferCreateWithMemoryBlock(allocator: kCFAllocatorDefault, memoryBlock: unsafeMutablePointer, blockLength: origin, blockAllocator: kCFAllocatorNull, customBlockSource: nil, offsetToData: 0, dataLength: origin, flags: 0, blockBufferOut: &block) != noErr {
                     return
                 }
-            
-                var timeInfo = CMSampleTimingInfo(duration: CMTimeMake(value: delta, timescale: 1000),
-                                                  presentationTimeStamp: CMTimeMake(value: self.lastInterval,
-                                                    timescale: 1000),
-                                                  decodeTimeStamp: CMTime.invalid)
-                
-                var sampleBuffer: CMSampleBuffer?
+                var timeInfo : CMSampleTimingInfo = CMSampleTimingInfo(duration: CMTimeMake(value: delta, timescale: 1000), presentationTimeStamp: CMTimeMake(value: self.lastInterval, timescale: 1000), decodeTimeStamp: CMTime.invalid)
+                var sampleBuffer : CMSampleBuffer?
                 var size = [origin]
-                CMSampleBufferCreateReady(allocator: kCFAllocatorDefault,
-                                          dataBuffer: block,
-                                          formatDescription: self.videoDesc,
-                                          sampleCount: 1,
-                                          sampleTimingEntryCount: 1,
-                                          sampleTimingArray: &timeInfo,
-                                          sampleSizeEntryCount: 1,
-                                          sampleSizeArray: &size,
-                                          sampleBufferOut: &sampleBuffer)
+                CMSampleBufferCreateReady(allocator: kCFAllocatorDefault, dataBuffer: block, formatDescription: self.videoDesc, sampleCount: 1, sampleTimingEntryCount: 1, sampleTimingArray: &timeInfo, sampleSizeEntryCount: 1, sampleSizeArray: &size, sampleBufferOut: &sampleBuffer)
                 guard let sample = sampleBuffer else {
                     return
                 }
@@ -157,21 +139,11 @@ public class H264Decoder {
                     return
                 }
                 var flagOut = VTDecodeInfoFlags.frameDropped
-                let status = VTDecompressionSessionDecodeFrame(s, sampleBuffer: sample, flags: VTDecodeFrameFlags._EnableAsynchronousDecompression, infoFlagsOut: &flagOut, outputHandler: { [weak self] (status, flags, buffer, time, duration) in
+                let status = VTDecompressionSessionDecodeFrame(s, sampleBuffer: sample, flags: VTDecodeFrameFlags._EnableAsynchronousDecompression, infoFlagsOut: &flagOut, outputHandler: {[weak self] (status, flags, buffer, time, duration) in
                     if let b = buffer {
-                        var timingInfo:CMSampleTimingInfo = CMSampleTimingInfo(
-                            duration: duration,
-                            presentationTimeStamp: time,
-                            decodeTimeStamp: CMTime.invalid
-                        )
-                        
-                        var videoFormatDescription:CMVideoFormatDescription? = nil
-                        CMVideoFormatDescriptionCreateForImageBuffer(
-                            allocator: kCFAllocatorDefault,
-                            imageBuffer: b,
-                            formatDescriptionOut: &videoFormatDescription
-                        )
-                
+                        var timingInfo : CMSampleTimingInfo = CMSampleTimingInfo(duration: duration, presentationTimeStamp: time, decodeTimeStamp: CMTime.invalid)
+                        var videoFormatDescription: CMVideoFormatDescription? = nil
+                        CMVideoFormatDescriptionCreateForImageBuffer(allocator: kCFAllocatorDefault, imageBuffer: b, formatDescriptionOut: &videoFormatDescription)
                         var convert:CMSampleBuffer?
                         CMSampleBufferCreateForImageBuffer(
                             allocator: kCFAllocatorDefault,
@@ -187,18 +159,93 @@ public class H264Decoder {
                         if let c = convert, let self = self {
                             self.delegate.h264Output(self, info: VideoBuffer(buffer: c, timeStamp: timeInfo.presentationTimeStamp.value))
                         }
-                    } else {
-//                        print("Deocde error")
                     }
                 })
-                
                 if status == kVTInvalidSessionErr {
                     guard let d = self.videoDesc else {
                         return
                     }
                     self.videoDesc = d
                 }
-            }
+            })
+//            d.withUnsafeMutableBytes { [unowned self] (bytes: UnsafeMutablePointer<UInt8>) -> Void in
+//                var block: CMBlockBuffer?
+//                if CMBlockBufferCreateWithMemoryBlock(allocator: kCFAllocatorDefault,
+//                                                      memoryBlock: bytes,
+//                                                      blockLength: origin,
+//                                                      blockAllocator: kCFAllocatorNull,
+//                                                      customBlockSource: nil,
+//                                                      offsetToData: 0,
+//                                                      dataLength: origin, flags: 0,
+//                                                      blockBufferOut: &block) != noErr {
+//                    return
+//                }
+//
+//                var timeInfo = CMSampleTimingInfo(duration: CMTimeMake(value: delta, timescale: 1000),
+//                                                  presentationTimeStamp: CMTimeMake(value: self.lastInterval,
+//                                                    timescale: 1000),
+//                                                  decodeTimeStamp: CMTime.invalid)
+//
+//                var sampleBuffer: CMSampleBuffer?
+//                var size = [origin]
+//                CMSampleBufferCreateReady(allocator: kCFAllocatorDefault,
+//                                          dataBuffer: block,
+//                                          formatDescription: self.videoDesc,
+//                                          sampleCount: 1,
+//                                          sampleTimingEntryCount: 1,
+//                                          sampleTimingArray: &timeInfo,
+//                                          sampleSizeEntryCount: 1,
+//                                          sampleSizeArray: &size,
+//                                          sampleBufferOut: &sampleBuffer)
+//                guard let sample = sampleBuffer else {
+//                    return
+//                }
+//                guard let s = self.session else {
+//                    return
+//                }
+//                var flagOut = VTDecodeInfoFlags.frameDropped
+//                let status = VTDecompressionSessionDecodeFrame(s, sampleBuffer: sample, flags: VTDecodeFrameFlags._EnableAsynchronousDecompression, infoFlagsOut: &flagOut, outputHandler: { [weak self] (status, flags, buffer, time, duration) in
+//                    if let b = buffer {
+//                        var timingInfo:CMSampleTimingInfo = CMSampleTimingInfo(
+//                            duration: duration,
+//                            presentationTimeStamp: time,
+//                            decodeTimeStamp: CMTime.invalid
+//                        )
+//
+//                        var videoFormatDescription:CMVideoFormatDescription? = nil
+//                                                CMVideoFormatDescriptionCreateForImageBuffer(
+//                                                    allocator: kCFAllocatorDefault,
+//                                                    imageBuffer: b,
+//                                                    formatDescriptionOut: &videoFormatDescription
+//                                                )
+//
+//                                                var convert:CMSampleBuffer?
+//                                                CMSampleBufferCreateForImageBuffer(
+//                                                    allocator: kCFAllocatorDefault,
+//                                                    imageBuffer: b,
+//                                                    dataReady: true,
+//                                                    makeDataReadyCallback: nil,
+//                                                    refcon: nil,
+//                                                    formatDescription: videoFormatDescription!,
+//                                                    sampleTiming: &timingInfo,
+//                                                    sampleBufferOut: &convert
+//                                                )
+//
+//                                                if let c = convert, let self = self {
+//                                                    self.delegate.h264Output(self, info: VideoBuffer(buffer: c, timeStamp: timeInfo.presentationTimeStamp.value))
+//                                                }
+//                                            } else {
+//                        //                        print("Deocde error")
+//                                            }
+//                                        })
+//
+//                                        if status == kVTInvalidSessionErr {
+//                                            guard let d = self.videoDesc else {
+//                                                return
+//                                            }
+//                                            self.videoDesc = d
+//                                        }
+//            }
             self.lastInterval += delta
         default:
             break

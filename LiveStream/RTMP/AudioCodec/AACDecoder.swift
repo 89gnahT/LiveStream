@@ -87,9 +87,14 @@ public class AACDecoder {
         if let adts = self.adts(dataLength: shift.count) {
             var combine = Data(adts)
             combine.append(shift)
-            combine.withUnsafeBytes { [unowned self] (bytes:UnsafePointer<UInt8>) -> Void in
-                AudioFileStreamParseBytes(self.streamID, UInt32(combine.count), bytes, AudioFileStreamParseFlags(rawValue: 0))
-            }
+            combine.withUnsafeBytes({[unowned self] (bytes: UnsafeRawBufferPointer) -> Void in
+                let unsafeBufferPointer = bytes.bindMemory(to: UInt8.self)
+                let unsafePointer = unsafeBufferPointer.baseAddress!
+                AudioFileStreamParseBytes(self.streamID, UInt32(combine.count), unsafePointer, AudioFileStreamParseFlags(rawValue: 0))
+            })
+//            combine.withUnsafeBytes { [unowned self] (bytes:UnsafePointer<UInt8>) -> Void in
+//                AudioFileStreamParseBytes(self.streamID, UInt32(combine.count), bytes, AudioFileStreamParseFlags(rawValue: 0))
+//            }
         }
         self.lastInterval += delta
     }

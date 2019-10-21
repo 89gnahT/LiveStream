@@ -12,7 +12,7 @@ extension Data {
         return withUnsafeBytes({(buffer : UnsafeRawBufferPointer) -> [UInt8] in
             let unsafeBufferPointer = buffer.bindMemory(to: [UInt8].self)
             let unsafePointer = unsafeBufferPointer.baseAddress!
-            return [UInt8].type(of: init)(UnsafeBufferPointer(start: unsafePointer, count: count))
+            return [UInt8](UnsafeBufferPointer(start: unsafePointer.pointee, count: count))
         })
 //        return withUnsafeBytes {
 //            return [UInt8](UnsafeBufferPointer(start: $0, count: count))
@@ -83,7 +83,7 @@ extension Data {
         //return withUnsafeBytes{ $0.pointee }
         return withUnsafeBytes({(buffer : UnsafeRawBufferPointer) -> Double in
             let unsafeBufferPointer = buffer.bindMemory(to: Double.self)
-            let unsafePointer : UnsafePointer<Double> = UnsafePointer<Float>.init(unsafeBufferPointer.baseAddress!)
+            let unsafePointer : UnsafePointer<Double> = UnsafePointer<Double>.init(unsafeBufferPointer.baseAddress!)
             return unsafePointer.pointee
         })
     }

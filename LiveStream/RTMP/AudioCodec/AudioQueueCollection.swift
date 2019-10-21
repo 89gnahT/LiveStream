@@ -86,6 +86,7 @@ public class AudioQueueCollection {
             return
         }
         var desc = desc
+        //let rawPtr = data.withUnsafeBytes({(bytes: UnsafeRawBufferPointer) -> })
         let rawPtr = data.withUnsafeBytes({ UnsafeRawPointer($0) })
         memcpy(b.pointee.mAudioData, rawPtr, size)
         b.pointee.mAudioDataByteSize = UInt32(size)
