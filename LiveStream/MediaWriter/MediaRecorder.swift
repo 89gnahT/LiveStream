@@ -86,7 +86,7 @@ class MediaRecorder: NSObject, CanvasMetalViewDelegate, MicrophoneCaptureDelegat
     }
     
     // MARK: Delegate
-    func didOutputPixelBuffer(_ pixelBuffer: CVPixelBuffer, _ presentationTimeStamp: CMTime, _ duration: CMTime) {
+    func didOutputPixelBuffer(_ pixelBuffer: CVPixelBuffer, _ presentationTimeStamp: CMTime, _ duration: CMTime,_ frameSize: CGSize) {
         recoderQueue.async {
             if self.status != .recording {
                 return

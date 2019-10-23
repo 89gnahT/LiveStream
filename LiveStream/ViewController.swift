@@ -13,8 +13,11 @@ class ViewController: UIViewController {
     
     @IBOutlet weak private var previewView: CanvasMetalView!
     
-    @IBOutlet weak var toggleButton: UISwitch!
+    let host: String = "rtmp://192.168.1.237/live"
+    let name: String = "stream1"
     
+    @IBOutlet weak var toggleButton: UISwitch!
+    var streamModule: RTMPPublishLayer = RTMPPublishLayer()
     var avCaptureModule: AVCaptureModule?
     var filter : FilterVideo = FilterVideo()
     var mediaRecorder = MediaRecorder()
@@ -34,29 +37,30 @@ class ViewController: UIViewController {
         if isRecording{
             // Stop
             isRecording = false
-            recordButton.setTitle("Record", for: .normal)
+            recordButton.setTitle("Livestream", for: .normal)
             recordButton.setTitleColor(UIColor.blue, for: .normal)
             self.displayLink?.invalidate()
             recordingTimeLabel.isHidden = true
-            
+            streamModule.stop()
             mediaRecorder.stopRecording { (url) in
                 self.saveFileIntoPhotos(url: url)
             }
         }else{
             // Start
             isRecording = true
-            recordButton.setTitle("Stop", for: .normal)
+            recordButton.setTitle("Disconnect", for: .normal)
             recordButton.setTitleColor(UIColor.red, for: .normal)
             startRecordingTime = Date.timeIntervalSinceReferenceDate
+            streamModule.publish(host: host, name: name)
             self.displayLink = CADisplayLink(target: self, selector: #selector(updateRecordingTime))
             self.displayLink?.add(to: .current, forMode: .common)
             recordingTimeLabel.isHidden = false
-            
+            /*
             if #available(iOS 11.0, *) {
                 mediaRecorder.startRecording(mediaType: .MP4, videoCodecType: .h264, outputSize: CGSize(width: avCaptureModule?.quality?.width() ?? 640, height: avCaptureModule?.quality?.height() ?? 480))
             } else {
                 
-            }
+            }*/
         }
     }
     
@@ -119,8 +123,8 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         filter.previewDelegate = previewView
-        previewView.filterDelegate = mediaRecorder;
-        avCaptureModule?.microphoneCapture?.audioDelegate = mediaRecorder
+        previewView.RTMPDelegate = self.streamModule
+        avCaptureModule?.microphoneCapture?.audioDelegate = streamModule
         avCaptureModule?.cameraCapture?.cameraDelegate = filter
         //        previewView.mirroring = true;
         previewView.mirroring = false

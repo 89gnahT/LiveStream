@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		72153E3023417B89009EF4B3 /* VideoRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72153E2F23417B89009EF4B3 /* VideoRecorder.swift */; };
-		72A1F5362340AFCE000B318D /* H264Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A1F5352340AFCE000B318D /* H264Encoder.swift */; };
-		72A1F53C2340D14E000B318D /* AACEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A1F53B2340D14E000B318D /* AACEncoder.swift */; };
 		810B68962347249B0038C779 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810B68952347249B0038C779 /* StartViewController.swift */; };
 		8114B44D2345B49E0001D527 /* FilterVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114B44C2345B49E0001D527 /* FilterVideo.swift */; };
 		8114B44F2345B5D10001D527 /* FrameFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114B44E2345B5D10001D527 /* FrameFilter.swift */; };
@@ -34,11 +31,86 @@
 		817119CB233C70A700595A7B /* LiveStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817119CA233C70A700595A7B /* LiveStreamTests.swift */; };
 		817119D6233C70A700595A7B /* LiveStreamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817119D5233C70A700595A7B /* LiveStreamUITests.swift */; };
 		817119E5233C712400595A7B /* AVCaptureModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817119E4233C712400595A7B /* AVCaptureModule.swift */; };
-		81974A222342065E00BB2DE3 /* MediaEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81974A212342065E00BB2DE3 /* MediaEncoder.swift */; };
 		81E336E3233E1EF500137FB1 /* CameraCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE53D8233DEDCF00C761F7 /* CameraCapture.swift */; };
 		81E336E4233E1EF800137FB1 /* MicrophoneCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E336E1233E1E2C00137FB1 /* MicrophoneCapture.swift */; };
-		DD058BB623472CD80047F93E /* VideoEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD058BB523472CD80047F93E /* VideoEncoder.swift */; };
-		DD058BB823472CE20047F93E /* AudioEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD058BB723472CE20047F93E /* AudioEncoder.swift */; };
+		C20989922350250E00DDEF69 /* H264Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209892C2350250E00DDEF69 /* H264Encoder.swift */; };
+		C20989932350250E00DDEF69 /* ByteReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209892D2350250E00DDEF69 /* ByteReader.swift */; };
+		C20989942350250E00DDEF69 /* H264Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209892E2350250E00DDEF69 /* H264Decoder.swift */; };
+		C20989952350250E00DDEF69 /* RTMPChunkDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209892F2350250E00DDEF69 /* RTMPChunkDefine.swift */; };
+		C20989962350250E00DDEF69 /* VideoBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989302350250E00DDEF69 /* VideoBuffer.swift */; };
+		C20989972350250E00DDEF69 /* RTMP+AMF0+UInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989332350250E00DDEF69 /* RTMP+AMF0+UInt.swift */; };
+		C20989982350250E00DDEF69 /* RTMP+AMF3+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989342350250E00DDEF69 /* RTMP+AMF3+Bool.swift */; };
+		C20989992350250E00DDEF69 /* RTMP+AMF3+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989352350250E00DDEF69 /* RTMP+AMF3+Array.swift */; };
+		C209899A2350250E00DDEF69 /* RTMP+AMF0+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989362350250E00DDEF69 /* RTMP+AMF0+Double.swift */; };
+		C209899B2350250E00DDEF69 /* RTMP+AMF0+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989372350250E00DDEF69 /* RTMP+AMF0+Date.swift */; };
+		C209899C2350250E00DDEF69 /* RTMP+AMF3Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989382350250E00DDEF69 /* RTMP+AMF3Protocol.swift */; };
+		C209899D2350250E00DDEF69 /* RTMP+AMF0+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989392350250E00DDEF69 /* RTMP+AMF0+String.swift */; };
+		C209899E2350250E00DDEF69 /* RTMP+AMF3+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209893A2350250E00DDEF69 /* RTMP+AMF3+Int.swift */; };
+		C209899F2350250E00DDEF69 /* RTMP+AMF3+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209893B2350250E00DDEF69 /* RTMP+AMF3+Dictionary.swift */; };
+		C20989A02350250E00DDEF69 /* RTMP+AMF0Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209893C2350250E00DDEF69 /* RTMP+AMF0Protocol.swift */; };
+		C20989A12350250E00DDEF69 /* RTMP+AMF0+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209893D2350250E00DDEF69 /* RTMP+AMF0+Array.swift */; };
+		C20989A22350250E00DDEF69 /* RTMP+AMF0+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209893E2350250E00DDEF69 /* RTMP+AMF0+Decode.swift */; };
+		C20989A32350250E00DDEF69 /* RTMP+AMF3+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209893F2350250E00DDEF69 /* RTMP+AMF3+String.swift */; };
+		C20989A42350250E00DDEF69 /* RTMP+AMF0+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989402350250E00DDEF69 /* RTMP+AMF0+Int.swift */; };
+		C20989A52350250E00DDEF69 /* AMF3Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989412350250E00DDEF69 /* AMF3Object.swift */; };
+		C20989A62350250E00DDEF69 /* RTMP+AMF0+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989422350250E00DDEF69 /* RTMP+AMF0+Dictionary.swift */; };
+		C20989A72350250E00DDEF69 /* AMF0Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989432350250E00DDEF69 /* AMF0Object.swift */; };
+		C20989A82350250E00DDEF69 /* RTMP+AMF0+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989442350250E00DDEF69 /* RTMP+AMF0+Bool.swift */; };
+		C20989A92350250E00DDEF69 /* AMFProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989452350250E00DDEF69 /* AMFProtocol.swift */; };
+		C20989AA2350250E00DDEF69 /* AMF3ReferenceTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989472350250E00DDEF69 /* AMF3ReferenceTable.swift */; };
+		C20989AB2350250E00DDEF69 /* RTMP+AMF3+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989482350250E00DDEF69 /* RTMP+AMF3+Decode.swift */; };
+		C20989AC2350250E00DDEF69 /* RTMP+AMF3+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989492350250E00DDEF69 /* RTMP+AMF3+Date.swift */; };
+		C20989AD2350250E00DDEF69 /* RTMP+AMF3+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209894A2350250E00DDEF69 /* RTMP+AMF3+Data.swift */; };
+		C20989AE2350250E00DDEF69 /* RTMP+AMF3+UInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209894B2350250E00DDEF69 /* RTMP+AMF3+UInt.swift */; };
+		C20989AF2350250E00DDEF69 /* RTMP+AMF3+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209894C2350250E00DDEF69 /* RTMP+AMF3+Double.swift */; };
+		C20989B02350250E00DDEF69 /* RTMPPublishLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209894D2350250E00DDEF69 /* RTMPPublishLayer.swift */; };
+		C20989B12350250E00DDEF69 /* RTMP+CMAudioFormatDescription+Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989502350250E00DDEF69 /* RTMP+CMAudioFormatDescription+Parameter.swift */; };
+		C20989B22350250E00DDEF69 /* TimeInterval+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989522350250E00DDEF69 /* TimeInterval+Convert.swift */; };
+		C20989B32350250E00DDEF69 /* RTMP+Array+SafeElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989542350250E00DDEF69 /* RTMP+Array+SafeElement.swift */; };
+		C20989B42350250E00DDEF69 /* RTMP+Array+Chunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989552350250E00DDEF69 /* RTMP+Array+Chunk.swift */; };
+		C20989B52350250E00DDEF69 /* UIDeviceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989572350250E00DDEF69 /* UIDeviceOrientation.swift */; };
+		C20989B62350250E00DDEF69 /* RTMP+ExpressibleByIntegerLiteral+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989592350250E00DDEF69 /* RTMP+ExpressibleByIntegerLiteral+Convert.swift */; };
+		C20989B72350250E00DDEF69 /* RTMP+CVImageBuffer+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209895B2350250E00DDEF69 /* RTMP+CVImageBuffer+Convert.swift */; };
+		C20989B82350250E00DDEF69 /* RTMP+CMBlockBuffer+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209895D2350250E00DDEF69 /* RTMP+CMBlockBuffer+Data.swift */; };
+		C20989B92350250E00DDEF69 /* RTMP+Dictionary+DecodeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209895F2350250E00DDEF69 /* RTMP+Dictionary+DecodeObject.swift */; };
+		C20989BA2350250E00DDEF69 /* RTMP+CMSampleBuffer+Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989612350250E00DDEF69 /* RTMP+CMSampleBuffer+Parameter.swift */; };
+		C20989BB2350250E00DDEF69 /* RTMP+Range+Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989632350250E00DDEF69 /* RTMP+Range+Shift.swift */; };
+		C20989BC2350250E00DDEF69 /* AudioQueueCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989652350250E00DDEF69 /* AudioQueueCollection.swift */; };
+		C20989BD2350250E00DDEF69 /* AACDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989662350250E00DDEF69 /* AACDecoder.swift */; };
+		C20989BE2350250E00DDEF69 /* RTMPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989672350250E00DDEF69 /* RTMPSocket.swift */; };
+		C20989BF2350250E00DDEF69 /* RTMPNetBaseSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989682350250E00DDEF69 /* RTMPNetBaseSocket.swift */; };
+		C20989C02350250E00DDEF69 /* AudioEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989692350250E00DDEF69 /* AudioEncoder.swift */; };
+		C20989C12350250E00DDEF69 /* RTMPHandShake.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209896A2350250E00DDEF69 /* RTMPHandShake.swift */; };
+		C20989C22350250E00DDEF69 /* RTMPResponseDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209896B2350250E00DDEF69 /* RTMPResponseDefine.swift */; };
+		C20989C32350250E00DDEF69 /* ControlMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209896C2350250E00DDEF69 /* ControlMessage.swift */; };
+		C20989C42350250E00DDEF69 /* DataMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209896D2350250E00DDEF69 /* DataMessage.swift */; };
+		C20989C52350250E00DDEF69 /* RTMP+AudioStreamBasicDescription+PacketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209896E2350250E00DDEF69 /* RTMP+AudioStreamBasicDescription+PacketData.swift */; };
+		C20989C72350250E00DDEF69 /* AudioSpecificConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989702350250E00DDEF69 /* AudioSpecificConfig.swift */; };
+		C20989C82350250E00DDEF69 /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989712350250E00DDEF69 /* DataResponse.swift */; };
+		C20989C92350250E00DDEF69 /* ShareObjectMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989722350250E00DDEF69 /* ShareObjectMessage.swift */; };
+		C20989CA2350250E00DDEF69 /* RTMPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989732350250E00DDEF69 /* RTMPResponse.swift */; };
+		C20989CB2350250E00DDEF69 /* StatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989742350250E00DDEF69 /* StatusResponse.swift */; };
+		C20989CC2350250E00DDEF69 /* UserControlMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989752350250E00DDEF69 /* UserControlMessage.swift */; };
+		C20989CD2350250E00DDEF69 /* AudioBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989762350250E00DDEF69 /* AudioBuffer.swift */; };
+		C20989CE2350250E00DDEF69 /* CommandMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989772350250E00DDEF69 /* CommandMessage.swift */; };
+		C20989CF2350250E00DDEF69 /* MetadataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989782350250E00DDEF69 /* MetadataResponse.swift */; };
+		C20989D02350250E00DDEF69 /* RTMPConnectionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989792350250E00DDEF69 /* RTMPConnectionInfo.swift */; };
+		C20989D12350250E00DDEF69 /* BaseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209897A2350250E00DDEF69 /* BaseMessage.swift */; };
+		C20989D22350250E00DDEF69 /* RTMPMessageDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209897B2350250E00DDEF69 /* RTMPMessageDefine.swift */; };
+		C20989D32350250E00DDEF69 /* RTMP+Data+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209897D2350250E00DDEF69 /* RTMP+Data+Range.swift */; };
+		C20989D42350250E00DDEF69 /* RTMP+Data+Append.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209897E2350250E00DDEF69 /* RTMP+Data+Append.swift */; };
+		C20989D52350250E00DDEF69 /* RTMP+Data+Byte.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209897F2350250E00DDEF69 /* RTMP+Data+Byte.swift */; };
+		C20989D62350250E00DDEF69 /* MessageHeaderType1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989822350250E00DDEF69 /* MessageHeaderType1.swift */; };
+		C20989D72350250E00DDEF69 /* DataDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989832350250E00DDEF69 /* DataDecoder.swift */; };
+		C20989D82350250E00DDEF69 /* MessageHeaderType3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989842350250E00DDEF69 /* MessageHeaderType3.swift */; };
+		C20989D92350250E00DDEF69 /* MessageHeaderType2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989852350250E00DDEF69 /* MessageHeaderType2.swift */; };
+		C20989DA2350250E00DDEF69 /* MessageHeaderType0.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989862350250E00DDEF69 /* MessageHeaderType0.swift */; };
+		C20989DB2350250E00DDEF69 /* RTMPChunkHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989872350250E00DDEF69 /* RTMPChunkHeader.swift */; };
+		C20989DC2350250E00DDEF69 /* ChunkDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989882350250E00DDEF69 /* ChunkDecoder.swift */; };
+		C20989DD2350250E00DDEF69 /* BitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989892350250E00DDEF69 /* BitData.swift */; };
+		C20989DE2350250E00DDEF69 /* ChunkEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209898A2350250E00DDEF69 /* ChunkEncoder.swift */; };
+		C20989DF2350250E00DDEF69 /* RTMPDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209898C2350250E00DDEF69 /* RTMPDefine.swift */; };
+		C20989E1235025BD00DDEF69 /* RTMPPublishSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989E0235025BD00DDEF69 /* RTMPPublishSession.swift */; };
 		DDFB4D462345F82400A91607 /* MediaFileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFB4D452345F82400A91607 /* MediaFileWriter.swift */; };
 		DDFB4D482345F84000A91607 /* MediaFileWriterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFB4D472345F84000A91607 /* MediaFileWriterStore.swift */; };
 		DDFB4D4A2345FC6B00A91607 /* MediaRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFB4D492345FC6B00A91607 /* MediaRecorder.swift */; };
@@ -62,9 +134,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		72153E2F23417B89009EF4B3 /* VideoRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecorder.swift; sourceTree = "<group>"; };
-		72A1F5352340AFCE000B318D /* H264Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H264Encoder.swift; sourceTree = "<group>"; };
-		72A1F53B2340D14E000B318D /* AACEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AACEncoder.swift; sourceTree = "<group>"; };
 		810B68952347249B0038C779 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		8114B44C2345B49E0001D527 /* FilterVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVideo.swift; sourceTree = "<group>"; };
 		8114B44E2345B5D10001D527 /* FrameFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameFilter.swift; sourceTree = "<group>"; };
@@ -95,11 +164,86 @@
 		817119D5233C70A700595A7B /* LiveStreamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamUITests.swift; sourceTree = "<group>"; };
 		817119D7233C70A700595A7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		817119E4233C712400595A7B /* AVCaptureModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVCaptureModule.swift; sourceTree = "<group>"; };
-		81974A212342065E00BB2DE3 /* MediaEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEncoder.swift; sourceTree = "<group>"; };
 		81BE53D8233DEDCF00C761F7 /* CameraCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCapture.swift; sourceTree = "<group>"; };
 		81E336E1233E1E2C00137FB1 /* MicrophoneCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneCapture.swift; sourceTree = "<group>"; };
-		DD058BB523472CD80047F93E /* VideoEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEncoder.swift; sourceTree = "<group>"; };
-		DD058BB723472CE20047F93E /* AudioEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEncoder.swift; sourceTree = "<group>"; };
+		C209892C2350250E00DDEF69 /* H264Encoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H264Encoder.swift; sourceTree = "<group>"; };
+		C209892D2350250E00DDEF69 /* ByteReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteReader.swift; sourceTree = "<group>"; };
+		C209892E2350250E00DDEF69 /* H264Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H264Decoder.swift; sourceTree = "<group>"; };
+		C209892F2350250E00DDEF69 /* RTMPChunkDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPChunkDefine.swift; sourceTree = "<group>"; };
+		C20989302350250E00DDEF69 /* VideoBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoBuffer.swift; sourceTree = "<group>"; };
+		C20989332350250E00DDEF69 /* RTMP+AMF0+UInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF0+UInt.swift"; sourceTree = "<group>"; };
+		C20989342350250E00DDEF69 /* RTMP+AMF3+Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+Bool.swift"; sourceTree = "<group>"; };
+		C20989352350250E00DDEF69 /* RTMP+AMF3+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+Array.swift"; sourceTree = "<group>"; };
+		C20989362350250E00DDEF69 /* RTMP+AMF0+Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF0+Double.swift"; sourceTree = "<group>"; };
+		C20989372350250E00DDEF69 /* RTMP+AMF0+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF0+Date.swift"; sourceTree = "<group>"; };
+		C20989382350250E00DDEF69 /* RTMP+AMF3Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3Protocol.swift"; sourceTree = "<group>"; };
+		C20989392350250E00DDEF69 /* RTMP+AMF0+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF0+String.swift"; sourceTree = "<group>"; };
+		C209893A2350250E00DDEF69 /* RTMP+AMF3+Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+Int.swift"; sourceTree = "<group>"; };
+		C209893B2350250E00DDEF69 /* RTMP+AMF3+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+Dictionary.swift"; sourceTree = "<group>"; };
+		C209893C2350250E00DDEF69 /* RTMP+AMF0Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF0Protocol.swift"; sourceTree = "<group>"; };
+		C209893D2350250E00DDEF69 /* RTMP+AMF0+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF0+Array.swift"; sourceTree = "<group>"; };
+		C209893E2350250E00DDEF69 /* RTMP+AMF0+Decode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF0+Decode.swift"; sourceTree = "<group>"; };
+		C209893F2350250E00DDEF69 /* RTMP+AMF3+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+String.swift"; sourceTree = "<group>"; };
+		C20989402350250E00DDEF69 /* RTMP+AMF0+Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF0+Int.swift"; sourceTree = "<group>"; };
+		C20989412350250E00DDEF69 /* AMF3Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMF3Object.swift; sourceTree = "<group>"; };
+		C20989422350250E00DDEF69 /* RTMP+AMF0+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF0+Dictionary.swift"; sourceTree = "<group>"; };
+		C20989432350250E00DDEF69 /* AMF0Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMF0Object.swift; sourceTree = "<group>"; };
+		C20989442350250E00DDEF69 /* RTMP+AMF0+Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF0+Bool.swift"; sourceTree = "<group>"; };
+		C20989452350250E00DDEF69 /* AMFProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMFProtocol.swift; sourceTree = "<group>"; };
+		C20989472350250E00DDEF69 /* AMF3ReferenceTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMF3ReferenceTable.swift; sourceTree = "<group>"; };
+		C20989482350250E00DDEF69 /* RTMP+AMF3+Decode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+Decode.swift"; sourceTree = "<group>"; };
+		C20989492350250E00DDEF69 /* RTMP+AMF3+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+Date.swift"; sourceTree = "<group>"; };
+		C209894A2350250E00DDEF69 /* RTMP+AMF3+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+Data.swift"; sourceTree = "<group>"; };
+		C209894B2350250E00DDEF69 /* RTMP+AMF3+UInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+UInt.swift"; sourceTree = "<group>"; };
+		C209894C2350250E00DDEF69 /* RTMP+AMF3+Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AMF3+Double.swift"; sourceTree = "<group>"; };
+		C209894D2350250E00DDEF69 /* RTMPPublishLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPPublishLayer.swift; sourceTree = "<group>"; };
+		C20989502350250E00DDEF69 /* RTMP+CMAudioFormatDescription+Parameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+CMAudioFormatDescription+Parameter.swift"; sourceTree = "<group>"; };
+		C20989522350250E00DDEF69 /* TimeInterval+Convert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Convert.swift"; sourceTree = "<group>"; };
+		C20989542350250E00DDEF69 /* RTMP+Array+SafeElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+Array+SafeElement.swift"; sourceTree = "<group>"; };
+		C20989552350250E00DDEF69 /* RTMP+Array+Chunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+Array+Chunk.swift"; sourceTree = "<group>"; };
+		C20989572350250E00DDEF69 /* UIDeviceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceOrientation.swift; sourceTree = "<group>"; };
+		C20989592350250E00DDEF69 /* RTMP+ExpressibleByIntegerLiteral+Convert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+ExpressibleByIntegerLiteral+Convert.swift"; sourceTree = "<group>"; };
+		C209895B2350250E00DDEF69 /* RTMP+CVImageBuffer+Convert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+CVImageBuffer+Convert.swift"; sourceTree = "<group>"; };
+		C209895D2350250E00DDEF69 /* RTMP+CMBlockBuffer+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+CMBlockBuffer+Data.swift"; sourceTree = "<group>"; };
+		C209895F2350250E00DDEF69 /* RTMP+Dictionary+DecodeObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+Dictionary+DecodeObject.swift"; sourceTree = "<group>"; };
+		C20989612350250E00DDEF69 /* RTMP+CMSampleBuffer+Parameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+CMSampleBuffer+Parameter.swift"; sourceTree = "<group>"; };
+		C20989632350250E00DDEF69 /* RTMP+Range+Shift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+Range+Shift.swift"; sourceTree = "<group>"; };
+		C20989652350250E00DDEF69 /* AudioQueueCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioQueueCollection.swift; sourceTree = "<group>"; };
+		C20989662350250E00DDEF69 /* AACDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AACDecoder.swift; sourceTree = "<group>"; };
+		C20989672350250E00DDEF69 /* RTMPSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPSocket.swift; sourceTree = "<group>"; };
+		C20989682350250E00DDEF69 /* RTMPNetBaseSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPNetBaseSocket.swift; sourceTree = "<group>"; };
+		C20989692350250E00DDEF69 /* AudioEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioEncoder.swift; sourceTree = "<group>"; };
+		C209896A2350250E00DDEF69 /* RTMPHandShake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPHandShake.swift; sourceTree = "<group>"; };
+		C209896B2350250E00DDEF69 /* RTMPResponseDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPResponseDefine.swift; sourceTree = "<group>"; };
+		C209896C2350250E00DDEF69 /* ControlMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlMessage.swift; sourceTree = "<group>"; };
+		C209896D2350250E00DDEF69 /* DataMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMessage.swift; sourceTree = "<group>"; };
+		C209896E2350250E00DDEF69 /* RTMP+AudioStreamBasicDescription+PacketData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+AudioStreamBasicDescription+PacketData.swift"; sourceTree = "<group>"; };
+		C20989702350250E00DDEF69 /* AudioSpecificConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSpecificConfig.swift; sourceTree = "<group>"; };
+		C20989712350250E00DDEF69 /* DataResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
+		C20989722350250E00DDEF69 /* ShareObjectMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareObjectMessage.swift; sourceTree = "<group>"; };
+		C20989732350250E00DDEF69 /* RTMPResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPResponse.swift; sourceTree = "<group>"; };
+		C20989742350250E00DDEF69 /* StatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusResponse.swift; sourceTree = "<group>"; };
+		C20989752350250E00DDEF69 /* UserControlMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserControlMessage.swift; sourceTree = "<group>"; };
+		C20989762350250E00DDEF69 /* AudioBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioBuffer.swift; sourceTree = "<group>"; };
+		C20989772350250E00DDEF69 /* CommandMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandMessage.swift; sourceTree = "<group>"; };
+		C20989782350250E00DDEF69 /* MetadataResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataResponse.swift; sourceTree = "<group>"; };
+		C20989792350250E00DDEF69 /* RTMPConnectionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPConnectionInfo.swift; sourceTree = "<group>"; };
+		C209897A2350250E00DDEF69 /* BaseMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMessage.swift; sourceTree = "<group>"; };
+		C209897B2350250E00DDEF69 /* RTMPMessageDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPMessageDefine.swift; sourceTree = "<group>"; };
+		C209897D2350250E00DDEF69 /* RTMP+Data+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+Data+Range.swift"; sourceTree = "<group>"; };
+		C209897E2350250E00DDEF69 /* RTMP+Data+Append.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+Data+Append.swift"; sourceTree = "<group>"; };
+		C209897F2350250E00DDEF69 /* RTMP+Data+Byte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTMP+Data+Byte.swift"; sourceTree = "<group>"; };
+		C20989822350250E00DDEF69 /* MessageHeaderType1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHeaderType1.swift; sourceTree = "<group>"; };
+		C20989832350250E00DDEF69 /* DataDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDecoder.swift; sourceTree = "<group>"; };
+		C20989842350250E00DDEF69 /* MessageHeaderType3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHeaderType3.swift; sourceTree = "<group>"; };
+		C20989852350250E00DDEF69 /* MessageHeaderType2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHeaderType2.swift; sourceTree = "<group>"; };
+		C20989862350250E00DDEF69 /* MessageHeaderType0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHeaderType0.swift; sourceTree = "<group>"; };
+		C20989872350250E00DDEF69 /* RTMPChunkHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPChunkHeader.swift; sourceTree = "<group>"; };
+		C20989882350250E00DDEF69 /* ChunkDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkDecoder.swift; sourceTree = "<group>"; };
+		C20989892350250E00DDEF69 /* BitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitData.swift; sourceTree = "<group>"; };
+		C209898A2350250E00DDEF69 /* ChunkEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkEncoder.swift; sourceTree = "<group>"; };
+		C209898C2350250E00DDEF69 /* RTMPDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPDefine.swift; sourceTree = "<group>"; };
+		C20989E0235025BD00DDEF69 /* RTMPPublishSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTMPPublishSession.swift; sourceTree = "<group>"; };
 		DDFB4D452345F82400A91607 /* MediaFileWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFileWriter.swift; sourceTree = "<group>"; };
 		DDFB4D472345F84000A91607 /* MediaFileWriterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFileWriterStore.swift; sourceTree = "<group>"; };
 		DDFB4D492345FC6B00A91607 /* MediaRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRecorder.swift; sourceTree = "<group>"; };
@@ -130,43 +274,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		72153E3123417BEA009EF4B3 /* Video */ = {
-			isa = PBXGroup;
-			children = (
-				72153E2F23417B89009EF4B3 /* VideoRecorder.swift */,
-				72C93270234075A20060BD8D /* Encoder */,
-			);
-			path = Video;
-			sourceTree = "<group>";
-		};
-		72A1F5342340AFA4000B318D /* VideoEncoder */ = {
-			isa = PBXGroup;
-			children = (
-				72A1F5352340AFCE000B318D /* H264Encoder.swift */,
-				DD058BB523472CD80047F93E /* VideoEncoder.swift */,
-			);
-			path = VideoEncoder;
-			sourceTree = "<group>";
-		};
-		72A1F5382340D11C000B318D /* AudioEncoder */ = {
-			isa = PBXGroup;
-			children = (
-				72A1F53B2340D14E000B318D /* AACEncoder.swift */,
-				DD058BB723472CE20047F93E /* AudioEncoder.swift */,
-			);
-			path = AudioEncoder;
-			sourceTree = "<group>";
-		};
-		72C93270234075A20060BD8D /* Encoder */ = {
-			isa = PBXGroup;
-			children = (
-				81974A212342065E00BB2DE3 /* MediaEncoder.swift */,
-				72A1F5382340D11C000B318D /* AudioEncoder */,
-				72A1F5342340AFA4000B318D /* VideoEncoder */,
-			);
-			path = Encoder;
-			sourceTree = "<group>";
-		};
 		8114B44B2345B48B0001D527 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +305,7 @@
 		817119A7233C70A400595A7B = {
 			isa = PBXGroup;
 			children = (
+				C209892A2350250E00DDEF69 /* RTMP */,
 				817119B2233C70A400595A7B /* LiveStream */,
 				817119C9233C70A700595A7B /* LiveStreamTests */,
 				817119D4233C70A700595A7B /* LiveStreamUITests */,
@@ -223,7 +331,6 @@
 				8114B4672345D9E30001D527 /* CanvasMetalView.swift */,
 				DDFB4D442345F80A00A91607 /* MediaWriter */,
 				8114B44B2345B48B0001D527 /* Filter */,
-				72153E3123417BEA009EF4B3 /* Video */,
 				817119E3233C711300595A7B /* Capture */,
 				817119B3233C70A400595A7B /* AppDelegate.swift */,
 				817119B5233C70A400595A7B /* SceneDelegate.swift */,
@@ -261,6 +368,292 @@
 				81E336E1233E1E2C00137FB1 /* MicrophoneCapture.swift */,
 			);
 			path = Capture;
+			sourceTree = "<group>";
+		};
+		C209892A2350250E00DDEF69 /* RTMP */ = {
+			isa = PBXGroup;
+			children = (
+				C209894D2350250E00DDEF69 /* RTMPPublishLayer.swift */,
+				C209898C2350250E00DDEF69 /* RTMPDefine.swift */,
+				C20989912350250E00DDEF69 /* Session */,
+				C209898E2350250E00DDEF69 /* Message */,
+				C20989802350250E00DDEF69 /* Response */,
+				C20989812350250E00DDEF69 /* Chunk */,
+				C20989902350250E00DDEF69 /* Socket */,
+				C20989312350250E00DDEF69 /* AMF */,
+				C209892B2350250E00DDEF69 /* VideoCodec */,
+				C209894E2350250E00DDEF69 /* Extension */,
+				C209898B2350250E00DDEF69 /* HandShake */,
+				C209898D2350250E00DDEF69 /* AudioCodec */,
+				C209898F2350250E00DDEF69 /* Mixer */,
+			);
+			name = RTMP;
+			path = LiveStream/RTMP;
+			sourceTree = "<group>";
+		};
+		C209892B2350250E00DDEF69 /* VideoCodec */ = {
+			isa = PBXGroup;
+			children = (
+				C209892C2350250E00DDEF69 /* H264Encoder.swift */,
+				C209892D2350250E00DDEF69 /* ByteReader.swift */,
+				C209892E2350250E00DDEF69 /* H264Decoder.swift */,
+				C209892F2350250E00DDEF69 /* RTMPChunkDefine.swift */,
+				C20989302350250E00DDEF69 /* VideoBuffer.swift */,
+			);
+			path = VideoCodec;
+			sourceTree = "<group>";
+		};
+		C20989312350250E00DDEF69 /* AMF */ = {
+			isa = PBXGroup;
+			children = (
+				C20989322350250E00DDEF69 /* AMF0 */,
+				C20989452350250E00DDEF69 /* AMFProtocol.swift */,
+				C20989462350250E00DDEF69 /* AMF3 */,
+			);
+			path = AMF;
+			sourceTree = "<group>";
+		};
+		C20989322350250E00DDEF69 /* AMF0 */ = {
+			isa = PBXGroup;
+			children = (
+				C20989332350250E00DDEF69 /* RTMP+AMF0+UInt.swift */,
+				C20989342350250E00DDEF69 /* RTMP+AMF3+Bool.swift */,
+				C20989352350250E00DDEF69 /* RTMP+AMF3+Array.swift */,
+				C20989362350250E00DDEF69 /* RTMP+AMF0+Double.swift */,
+				C20989372350250E00DDEF69 /* RTMP+AMF0+Date.swift */,
+				C20989382350250E00DDEF69 /* RTMP+AMF3Protocol.swift */,
+				C20989392350250E00DDEF69 /* RTMP+AMF0+String.swift */,
+				C209893A2350250E00DDEF69 /* RTMP+AMF3+Int.swift */,
+				C209893B2350250E00DDEF69 /* RTMP+AMF3+Dictionary.swift */,
+				C209893C2350250E00DDEF69 /* RTMP+AMF0Protocol.swift */,
+				C209893D2350250E00DDEF69 /* RTMP+AMF0+Array.swift */,
+				C209893E2350250E00DDEF69 /* RTMP+AMF0+Decode.swift */,
+				C209893F2350250E00DDEF69 /* RTMP+AMF3+String.swift */,
+				C20989402350250E00DDEF69 /* RTMP+AMF0+Int.swift */,
+				C20989412350250E00DDEF69 /* AMF3Object.swift */,
+				C20989422350250E00DDEF69 /* RTMP+AMF0+Dictionary.swift */,
+				C20989432350250E00DDEF69 /* AMF0Object.swift */,
+				C20989442350250E00DDEF69 /* RTMP+AMF0+Bool.swift */,
+			);
+			path = AMF0;
+			sourceTree = "<group>";
+		};
+		C20989462350250E00DDEF69 /* AMF3 */ = {
+			isa = PBXGroup;
+			children = (
+				C20989472350250E00DDEF69 /* AMF3ReferenceTable.swift */,
+				C20989482350250E00DDEF69 /* RTMP+AMF3+Decode.swift */,
+				C20989492350250E00DDEF69 /* RTMP+AMF3+Date.swift */,
+				C209894A2350250E00DDEF69 /* RTMP+AMF3+Data.swift */,
+				C209894B2350250E00DDEF69 /* RTMP+AMF3+UInt.swift */,
+				C209894C2350250E00DDEF69 /* RTMP+AMF3+Double.swift */,
+			);
+			path = AMF3;
+			sourceTree = "<group>";
+		};
+		C209894E2350250E00DDEF69 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C209894F2350250E00DDEF69 /* CMAudioFormatDescription */,
+				C20989512350250E00DDEF69 /* TimeInterval */,
+				C20989532350250E00DDEF69 /* Array */,
+				C20989562350250E00DDEF69 /* UIDeviceOrientation */,
+				C20989582350250E00DDEF69 /* ExpressibleByIntegerLiteral */,
+				C209895A2350250E00DDEF69 /* CVImageBuffer */,
+				C209895C2350250E00DDEF69 /* CMBlockBuffer */,
+				C209895E2350250E00DDEF69 /* Dictionary */,
+				C20989602350250E00DDEF69 /* CMSampleBuffer */,
+				C20989622350250E00DDEF69 /* Bound */,
+				C20989642350250E00DDEF69 /* AudioStreamBasicDescription */,
+				C209897C2350250E00DDEF69 /* Data */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		C209894F2350250E00DDEF69 /* CMAudioFormatDescription */ = {
+			isa = PBXGroup;
+			children = (
+				C20989502350250E00DDEF69 /* RTMP+CMAudioFormatDescription+Parameter.swift */,
+			);
+			path = CMAudioFormatDescription;
+			sourceTree = "<group>";
+		};
+		C20989512350250E00DDEF69 /* TimeInterval */ = {
+			isa = PBXGroup;
+			children = (
+				C20989522350250E00DDEF69 /* TimeInterval+Convert.swift */,
+			);
+			path = TimeInterval;
+			sourceTree = "<group>";
+		};
+		C20989532350250E00DDEF69 /* Array */ = {
+			isa = PBXGroup;
+			children = (
+				C20989542350250E00DDEF69 /* RTMP+Array+SafeElement.swift */,
+				C20989552350250E00DDEF69 /* RTMP+Array+Chunk.swift */,
+			);
+			path = Array;
+			sourceTree = "<group>";
+		};
+		C20989562350250E00DDEF69 /* UIDeviceOrientation */ = {
+			isa = PBXGroup;
+			children = (
+				C20989572350250E00DDEF69 /* UIDeviceOrientation.swift */,
+			);
+			path = UIDeviceOrientation;
+			sourceTree = "<group>";
+		};
+		C20989582350250E00DDEF69 /* ExpressibleByIntegerLiteral */ = {
+			isa = PBXGroup;
+			children = (
+				C20989592350250E00DDEF69 /* RTMP+ExpressibleByIntegerLiteral+Convert.swift */,
+			);
+			path = ExpressibleByIntegerLiteral;
+			sourceTree = "<group>";
+		};
+		C209895A2350250E00DDEF69 /* CVImageBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				C209895B2350250E00DDEF69 /* RTMP+CVImageBuffer+Convert.swift */,
+			);
+			path = CVImageBuffer;
+			sourceTree = "<group>";
+		};
+		C209895C2350250E00DDEF69 /* CMBlockBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				C209895D2350250E00DDEF69 /* RTMP+CMBlockBuffer+Data.swift */,
+			);
+			path = CMBlockBuffer;
+			sourceTree = "<group>";
+		};
+		C209895E2350250E00DDEF69 /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				C209895F2350250E00DDEF69 /* RTMP+Dictionary+DecodeObject.swift */,
+			);
+			path = Dictionary;
+			sourceTree = "<group>";
+		};
+		C20989602350250E00DDEF69 /* CMSampleBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				C20989612350250E00DDEF69 /* RTMP+CMSampleBuffer+Parameter.swift */,
+			);
+			path = CMSampleBuffer;
+			sourceTree = "<group>";
+		};
+		C20989622350250E00DDEF69 /* Bound */ = {
+			isa = PBXGroup;
+			children = (
+				C20989632350250E00DDEF69 /* RTMP+Range+Shift.swift */,
+			);
+			path = Bound;
+			sourceTree = "<group>";
+		};
+		C20989642350250E00DDEF69 /* AudioStreamBasicDescription */ = {
+			isa = PBXGroup;
+			children = (
+				C209896E2350250E00DDEF69 /* RTMP+AudioStreamBasicDescription+PacketData.swift */,
+			);
+			path = AudioStreamBasicDescription;
+			sourceTree = "<group>";
+		};
+		C209897C2350250E00DDEF69 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C209897D2350250E00DDEF69 /* RTMP+Data+Range.swift */,
+				C209897E2350250E00DDEF69 /* RTMP+Data+Append.swift */,
+				C209897F2350250E00DDEF69 /* RTMP+Data+Byte.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C20989802350250E00DDEF69 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				C209896B2350250E00DDEF69 /* RTMPResponseDefine.swift */,
+				C20989712350250E00DDEF69 /* DataResponse.swift */,
+				C20989732350250E00DDEF69 /* RTMPResponse.swift */,
+				C20989742350250E00DDEF69 /* StatusResponse.swift */,
+				C20989782350250E00DDEF69 /* MetadataResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		C20989812350250E00DDEF69 /* Chunk */ = {
+			isa = PBXGroup;
+			children = (
+				C20989822350250E00DDEF69 /* MessageHeaderType1.swift */,
+				C20989832350250E00DDEF69 /* DataDecoder.swift */,
+				C20989842350250E00DDEF69 /* MessageHeaderType3.swift */,
+				C20989852350250E00DDEF69 /* MessageHeaderType2.swift */,
+				C20989862350250E00DDEF69 /* MessageHeaderType0.swift */,
+				C20989872350250E00DDEF69 /* RTMPChunkHeader.swift */,
+				C20989882350250E00DDEF69 /* ChunkDecoder.swift */,
+				C20989892350250E00DDEF69 /* BitData.swift */,
+				C209898A2350250E00DDEF69 /* ChunkEncoder.swift */,
+			);
+			path = Chunk;
+			sourceTree = "<group>";
+		};
+		C209898B2350250E00DDEF69 /* HandShake */ = {
+			isa = PBXGroup;
+			children = (
+				C209896A2350250E00DDEF69 /* RTMPHandShake.swift */,
+			);
+			path = HandShake;
+			sourceTree = "<group>";
+		};
+		C209898D2350250E00DDEF69 /* AudioCodec */ = {
+			isa = PBXGroup;
+			children = (
+				C20989652350250E00DDEF69 /* AudioQueueCollection.swift */,
+				C20989662350250E00DDEF69 /* AACDecoder.swift */,
+				C20989692350250E00DDEF69 /* AudioEncoder.swift */,
+				C20989702350250E00DDEF69 /* AudioSpecificConfig.swift */,
+				C20989762350250E00DDEF69 /* AudioBuffer.swift */,
+			);
+			path = AudioCodec;
+			sourceTree = "<group>";
+		};
+		C209898E2350250E00DDEF69 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				C209896C2350250E00DDEF69 /* ControlMessage.swift */,
+				C209896D2350250E00DDEF69 /* DataMessage.swift */,
+				C20989722350250E00DDEF69 /* ShareObjectMessage.swift */,
+				C20989752350250E00DDEF69 /* UserControlMessage.swift */,
+				C20989772350250E00DDEF69 /* CommandMessage.swift */,
+				C209897A2350250E00DDEF69 /* BaseMessage.swift */,
+				C209897B2350250E00DDEF69 /* RTMPMessageDefine.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		C209898F2350250E00DDEF69 /* Mixer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mixer;
+			sourceTree = "<group>";
+		};
+		C20989902350250E00DDEF69 /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				C20989672350250E00DDEF69 /* RTMPSocket.swift */,
+				C20989682350250E00DDEF69 /* RTMPNetBaseSocket.swift */,
+				C20989792350250E00DDEF69 /* RTMPConnectionInfo.swift */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
+		C20989912350250E00DDEF69 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				C20989E0235025BD00DDEF69 /* RTMPPublishSession.swift */,
+			);
+			path = Session;
 			sourceTree = "<group>";
 		};
 		DDFB4D442345F80A00A91607 /* MediaWriter */ = {
@@ -405,35 +798,107 @@
 			buildActionMask = 2147483647;
 			files = (
 				8114B44D2345B49E0001D527 /* FilterVideo.swift in Sources */,
+				C20989952350250E00DDEF69 /* RTMPChunkDefine.swift in Sources */,
+				C20989C72350250E00DDEF69 /* AudioSpecificConfig.swift in Sources */,
+				C20989B82350250E00DDEF69 /* RTMP+CMBlockBuffer+Data.swift in Sources */,
+				C20989C02350250E00DDEF69 /* AudioEncoder.swift in Sources */,
+				C20989B42350250E00DDEF69 /* RTMP+Array+Chunk.swift in Sources */,
 				810B68962347249B0038C779 /* StartViewController.swift in Sources */,
+				C20989982350250E00DDEF69 /* RTMP+AMF3+Bool.swift in Sources */,
+				C20989C52350250E00DDEF69 /* RTMP+AudioStreamBasicDescription+PacketData.swift in Sources */,
 				8114B45E2345D3D50001D527 /* Luminance.metal in Sources */,
+				C20989BE2350250E00DDEF69 /* RTMPSocket.swift in Sources */,
+				C20989AB2350250E00DDEF69 /* RTMP+AMF3+Decode.swift in Sources */,
+				C20989DE2350250E00DDEF69 /* ChunkEncoder.swift in Sources */,
+				C20989C12350250E00DDEF69 /* RTMPHandShake.swift in Sources */,
 				8114B44F2345B5D10001D527 /* FrameFilter.swift in Sources */,
 				DDFB4D482345F84000A91607 /* MediaFileWriterStore.swift in Sources */,
+				C20989B62350250E00DDEF69 /* RTMP+ExpressibleByIntegerLiteral+Convert.swift in Sources */,
+				C20989A42350250E00DDEF69 /* RTMP+AMF0+Int.swift in Sources */,
+				C209899E2350250E00DDEF69 /* RTMP+AMF3+Int.swift in Sources */,
 				817119B8233C70A400595A7B /* ViewController.swift in Sources */,
+				C20989DF2350250E00DDEF69 /* RTMPDefine.swift in Sources */,
+				C20989BD2350250E00DDEF69 /* AACDecoder.swift in Sources */,
+				C20989922350250E00DDEF69 /* H264Encoder.swift in Sources */,
+				C20989972350250E00DDEF69 /* RTMP+AMF0+UInt.swift in Sources */,
+				C20989BA2350250E00DDEF69 /* RTMP+CMSampleBuffer+Parameter.swift in Sources */,
+				C20989C32350250E00DDEF69 /* ControlMessage.swift in Sources */,
+				C20989D92350250E00DDEF69 /* MessageHeaderType2.swift in Sources */,
+				C20989B52350250E00DDEF69 /* UIDeviceOrientation.swift in Sources */,
+				C20989BF2350250E00DDEF69 /* RTMPNetBaseSocket.swift in Sources */,
+				C209899B2350250E00DDEF69 /* RTMP+AMF0+Date.swift in Sources */,
 				817119E5233C712400595A7B /* AVCaptureModule.swift in Sources */,
+				C20989E1235025BD00DDEF69 /* RTMPPublishSession.swift in Sources */,
+				C20989B12350250E00DDEF69 /* RTMP+CMAudioFormatDescription+Parameter.swift in Sources */,
+				C20989D42350250E00DDEF69 /* RTMP+Data+Append.swift in Sources */,
 				DDFB4D4A2345FC6B00A91607 /* MediaRecorder.swift in Sources */,
 				81E336E3233E1EF500137FB1 /* CameraCapture.swift in Sources */,
+				C209899A2350250E00DDEF69 /* RTMP+AMF0+Double.swift in Sources */,
+				C20989C82350250E00DDEF69 /* DataResponse.swift in Sources */,
+				C20989B72350250E00DDEF69 /* RTMP+CVImageBuffer+Convert.swift in Sources */,
 				8114B4602345D3DE0001D527 /* LowContract.metal in Sources */,
 				817119B4233C70A400595A7B /* AppDelegate.swift in Sources */,
-				72A1F53C2340D14E000B318D /* AACEncoder.swift in Sources */,
+				C20989A52350250E00DDEF69 /* AMF3Object.swift in Sources */,
 				8114B45C2345D3C90001D527 /* Purple.metal in Sources */,
+				C20989D62350250E00DDEF69 /* MessageHeaderType1.swift in Sources */,
+				C20989B32350250E00DDEF69 /* RTMP+Array+SafeElement.swift in Sources */,
+				C20989A02350250E00DDEF69 /* RTMP+AMF0Protocol.swift in Sources */,
 				8114B4542345D2020001D527 /* Luminance.swift in Sources */,
-				72153E3023417B89009EF4B3 /* VideoRecorder.swift in Sources */,
+				C20989AE2350250E00DDEF69 /* RTMP+AMF3+UInt.swift in Sources */,
+				C20989C42350250E00DDEF69 /* DataMessage.swift in Sources */,
+				C20989CC2350250E00DDEF69 /* UserControlMessage.swift in Sources */,
+				C20989A82350250E00DDEF69 /* RTMP+AMF0+Bool.swift in Sources */,
+				C20989AD2350250E00DDEF69 /* RTMP+AMF3+Data.swift in Sources */,
+				C20989CA2350250E00DDEF69 /* RTMPResponse.swift in Sources */,
+				C209899D2350250E00DDEF69 /* RTMP+AMF0+String.swift in Sources */,
+				C20989A32350250E00DDEF69 /* RTMP+AMF3+String.swift in Sources */,
+				C209899F2350250E00DDEF69 /* RTMP+AMF3+Dictionary.swift in Sources */,
+				C20989A62350250E00DDEF69 /* RTMP+AMF0+Dictionary.swift in Sources */,
+				C20989CE2350250E00DDEF69 /* CommandMessage.swift in Sources */,
 				8114B4522345D1500001D527 /* Purple.swift in Sources */,
 				DDFB4D462345F82400A91607 /* MediaFileWriter.swift in Sources */,
+				C20989932350250E00DDEF69 /* ByteReader.swift in Sources */,
+				C20989DD2350250E00DDEF69 /* BitData.swift in Sources */,
+				C20989DB2350250E00DDEF69 /* RTMPChunkHeader.swift in Sources */,
+				C20989D72350250E00DDEF69 /* DataDecoder.swift in Sources */,
+				C20989B92350250E00DDEF69 /* RTMP+Dictionary+DecodeObject.swift in Sources */,
 				817119B6233C70A400595A7B /* SceneDelegate.swift in Sources */,
 				8114B4622345D3F00001D527 /* ColorInversion.metal in Sources */,
+				C20989A22350250E00DDEF69 /* RTMP+AMF0+Decode.swift in Sources */,
 				8114B4642345D3FA0001D527 /* Lookup.metal in Sources */,
+				C20989AF2350250E00DDEF69 /* RTMP+AMF3+Double.swift in Sources */,
+				C20989942350250E00DDEF69 /* H264Decoder.swift in Sources */,
+				C20989CF2350250E00DDEF69 /* MetadataResponse.swift in Sources */,
 				8114B4662345D43C0001D527 /* PassThrough.metal in Sources */,
+				C20989AC2350250E00DDEF69 /* RTMP+AMF3+Date.swift in Sources */,
+				C20989D02350250E00DDEF69 /* RTMPConnectionInfo.swift in Sources */,
 				8114B45A2345D3A60001D527 /* Lookup.swift in Sources */,
+				C20989CB2350250E00DDEF69 /* StatusResponse.swift in Sources */,
+				C20989D52350250E00DDEF69 /* RTMP+Data+Byte.swift in Sources */,
 				8114B4582345D2370001D527 /* ColorInversion.swift in Sources */,
+				C20989D12350250E00DDEF69 /* BaseMessage.swift in Sources */,
+				C20989D22350250E00DDEF69 /* RTMPMessageDefine.swift in Sources */,
+				C20989DC2350250E00DDEF69 /* ChunkDecoder.swift in Sources */,
 				8114B4682345D9E30001D527 /* CanvasMetalView.swift in Sources */,
-				72A1F5362340AFCE000B318D /* H264Encoder.swift in Sources */,
-				81974A222342065E00BB2DE3 /* MediaEncoder.swift in Sources */,
+				C20989A12350250E00DDEF69 /* RTMP+AMF0+Array.swift in Sources */,
+				C20989C92350250E00DDEF69 /* ShareObjectMessage.swift in Sources */,
+				C20989992350250E00DDEF69 /* RTMP+AMF3+Array.swift in Sources */,
+				C20989CD2350250E00DDEF69 /* AudioBuffer.swift in Sources */,
+				C20989DA2350250E00DDEF69 /* MessageHeaderType0.swift in Sources */,
+				C20989D82350250E00DDEF69 /* MessageHeaderType3.swift in Sources */,
+				C20989D32350250E00DDEF69 /* RTMP+Data+Range.swift in Sources */,
+				C20989C22350250E00DDEF69 /* RTMPResponseDefine.swift in Sources */,
+				C20989B22350250E00DDEF69 /* TimeInterval+Convert.swift in Sources */,
 				8114B4562345D2170001D527 /* LowContract.swift in Sources */,
-				DD058BB623472CD80047F93E /* VideoEncoder.swift in Sources */,
+				C20989AA2350250E00DDEF69 /* AMF3ReferenceTable.swift in Sources */,
+				C20989B02350250E00DDEF69 /* RTMPPublishLayer.swift in Sources */,
+				C20989A72350250E00DDEF69 /* AMF0Object.swift in Sources */,
+				C20989BC2350250E00DDEF69 /* AudioQueueCollection.swift in Sources */,
 				81E336E4233E1EF800137FB1 /* MicrophoneCapture.swift in Sources */,
-				DD058BB823472CE20047F93E /* AudioEncoder.swift in Sources */,
+				C20989962350250E00DDEF69 /* VideoBuffer.swift in Sources */,
+				C20989BB2350250E00DDEF69 /* RTMP+Range+Shift.swift in Sources */,
+				C20989A92350250E00DDEF69 /* AMFProtocol.swift in Sources */,
+				C209899C2350250E00DDEF69 /* RTMP+AMF3Protocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,14 +1073,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V4K6YSYUT4;
+				DEVELOPMENT_TEAM = 3NLA5R24DG;
 				INFOPLIST_FILE = LiveStream/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CPU12015.CameraCapture;
+				PRODUCT_BUNDLE_IDENTIFIER = CPU11899.VNG.LiveStream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -629,14 +1094,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V4K6YSYUT4;
+				DEVELOPMENT_TEAM = 3NLA5R24DG;
 				INFOPLIST_FILE = LiveStream/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CPU12015.CameraCapture;
+				PRODUCT_BUNDLE_IDENTIFIER = CPU11899.VNG.LiveStream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

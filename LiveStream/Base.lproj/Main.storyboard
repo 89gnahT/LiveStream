@@ -24,8 +24,8 @@
                                 </connections>
                             </mtkView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKL-H7-yiK">
-                                <rect key="frame" x="182.5" y="704" width="49" height="30"/>
-                                <state key="normal" title="Record"/>
+                                <rect key="frame" x="169.5" y="704" width="75" height="30"/>
+                                <state key="normal" title="Livestream"/>
                                 <connections>
                                     <action selector="Record:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g2C-OH-VpW"/>
                                 </connections>
