@@ -111,6 +111,8 @@
 		C20989DE2350250E00DDEF69 /* ChunkEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209898A2350250E00DDEF69 /* ChunkEncoder.swift */; };
 		C20989DF2350250E00DDEF69 /* RTMPDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209898C2350250E00DDEF69 /* RTMPDefine.swift */; };
 		C20989E1235025BD00DDEF69 /* RTMPPublishSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20989E0235025BD00DDEF69 /* RTMPPublishSession.swift */; };
+		DD516F822360546A00BE18C3 /* LiveStreamMediaRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD516F812360546A00BE18C3 /* LiveStreamMediaRecorder.swift */; };
+		DD516F842360554800BE18C3 /* OrientationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD516F832360554800BE18C3 /* OrientationHelper.swift */; };
 		DDFB4D462345F82400A91607 /* MediaFileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFB4D452345F82400A91607 /* MediaFileWriter.swift */; };
 		DDFB4D482345F84000A91607 /* MediaFileWriterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFB4D472345F84000A91607 /* MediaFileWriterStore.swift */; };
 		DDFB4D4A2345FC6B00A91607 /* MediaRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFB4D492345FC6B00A91607 /* MediaRecorder.swift */; };
@@ -244,6 +246,8 @@
 		C209898A2350250E00DDEF69 /* ChunkEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkEncoder.swift; sourceTree = "<group>"; };
 		C209898C2350250E00DDEF69 /* RTMPDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPDefine.swift; sourceTree = "<group>"; };
 		C20989E0235025BD00DDEF69 /* RTMPPublishSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTMPPublishSession.swift; sourceTree = "<group>"; };
+		DD516F812360546A00BE18C3 /* LiveStreamMediaRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamMediaRecorder.swift; sourceTree = "<group>"; };
+		DD516F832360554800BE18C3 /* OrientationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationHelper.swift; sourceTree = "<group>"; };
 		DDFB4D452345F82400A91607 /* MediaFileWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFileWriter.swift; sourceTree = "<group>"; };
 		DDFB4D472345F84000A91607 /* MediaFileWriterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFileWriterStore.swift; sourceTree = "<group>"; };
 		DDFB4D492345FC6B00A91607 /* MediaRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRecorder.swift; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				810B68952347249B0038C779 /* StartViewController.swift */,
+				DD516F832360554800BE18C3 /* OrientationHelper.swift */,
 				817119B7233C70A400595A7B /* ViewController.swift */,
 				8114B4672345D9E30001D527 /* CanvasMetalView.swift */,
 				DDFB4D442345F80A00A91607 /* MediaWriter */,
@@ -662,6 +667,7 @@
 				DDFB4D452345F82400A91607 /* MediaFileWriter.swift */,
 				DDFB4D472345F84000A91607 /* MediaFileWriterStore.swift */,
 				DDFB4D492345FC6B00A91607 /* MediaRecorder.swift */,
+				DD516F812360546A00BE18C3 /* LiveStreamMediaRecorder.swift */,
 			);
 			path = MediaWriter;
 			sourceTree = "<group>";
@@ -819,6 +825,7 @@
 				817119B8233C70A400595A7B /* ViewController.swift in Sources */,
 				C20989DF2350250E00DDEF69 /* RTMPDefine.swift in Sources */,
 				C20989BD2350250E00DDEF69 /* AACDecoder.swift in Sources */,
+				DD516F842360554800BE18C3 /* OrientationHelper.swift in Sources */,
 				C20989922350250E00DDEF69 /* H264Encoder.swift in Sources */,
 				C20989972350250E00DDEF69 /* RTMP+AMF0+UInt.swift in Sources */,
 				C20989BA2350250E00DDEF69 /* RTMP+CMSampleBuffer+Parameter.swift in Sources */,
@@ -894,6 +901,7 @@
 				C20989B02350250E00DDEF69 /* RTMPPublishLayer.swift in Sources */,
 				C20989A72350250E00DDEF69 /* AMF0Object.swift in Sources */,
 				C20989BC2350250E00DDEF69 /* AudioQueueCollection.swift in Sources */,
+				DD516F822360546A00BE18C3 /* LiveStreamMediaRecorder.swift in Sources */,
 				81E336E4233E1EF800137FB1 /* MicrophoneCapture.swift in Sources */,
 				C20989962350250E00DDEF69 /* VideoBuffer.swift in Sources */,
 				C20989BB2350250E00DDEF69 /* RTMP+Range+Shift.swift in Sources */,
@@ -1073,14 +1081,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3NLA5R24DG;
+				DEVELOPMENT_TEAM = V4K6YSYUT4;
 				INFOPLIST_FILE = LiveStream/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CPU11899.VNG.LiveStream;
+				PRODUCT_BUNDLE_IDENTIFIER = CPU12015.CameraCapture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1094,14 +1102,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3NLA5R24DG;
+				DEVELOPMENT_TEAM = V4K6YSYUT4;
 				INFOPLIST_FILE = LiveStream/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CPU11899.VNG.LiveStream;
+				PRODUCT_BUNDLE_IDENTIFIER = CPU12015.CameraCapture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

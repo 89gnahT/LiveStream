@@ -23,12 +23,11 @@ class CanvasMetalView: MTKView, FilterVideoDelegate {
     var RTMPDelegate: CanvasMetalViewDelegate?
     func didCapturePixelBuffer(_ pixelBuffer: CVPixelBuffer, _ presentationTimeStamp: CMTime, _ duration: CMTime) {
         self.pixelBuffer = pixelBuffer
-//        filterDelegate?.didOutputPixelBuffer(pixelBuffer, presentationTimeStamp, duration)
-        RTMPDelegate?.didOutputPixelBuffer(pixelBuffer, presentationTimeStamp, duration, self.bounds.size)
-
-        
+        filterDelegate?.didOutputPixelBuffer(pixelBuffer, presentationTimeStamp, duration, size!)
+        RTMPDelegate?.didOutputPixelBuffer(pixelBuffer, presentationTimeStamp, duration, size!)     
     }
     
+    var size : CGSize?
     
     enum Rotation: Int {
             case rotate0Degrees
@@ -246,6 +245,8 @@ class CanvasMetalView: MTKView, FilterVideoDelegate {
         required init(coder: NSCoder) {
             super.init(coder: coder)
             device = MTLCreateSystemDefaultDevice()
+            
+            size = self.bounds.size
             
             configureMetal()
             
