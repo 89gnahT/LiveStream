@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     var streamModule: RTMPPublishLayer = RTMPPublishLayer()
     var avCaptureModule: AVCaptureModule?
     var filter : FilterVideo = FilterVideo()
-    var mediaRecorder = MediaRecorder()
+    var mediaRecorder = LiveStreamMediaRecorder()
     var isRecording = false
     var startRecordingTime : TimeInterval?
     var displayLink : CADisplayLink?
@@ -37,30 +37,29 @@ class ViewController: UIViewController {
         if isRecording{
             // Stop
             isRecording = false
-            recordButton.setTitle("Livestream", for: .normal)
+            recordButton.setTitle("Record", for: .normal)
             recordButton.setTitleColor(UIColor.blue, for: .normal)
             self.displayLink?.invalidate()
             recordingTimeLabel.isHidden = true
-            streamModule.stop()
+            
             mediaRecorder.stopRecording { (url) in
                 self.saveFileIntoPhotos(url: url)
             }
         }else{
             // Start
             isRecording = true
-            recordButton.setTitle("Disconnect", for: .normal)
+            recordButton.setTitle("Stop", for: .normal)
             recordButton.setTitleColor(UIColor.red, for: .normal)
             startRecordingTime = Date.timeIntervalSinceReferenceDate
-            streamModule.publish(host: host, name: name)
             self.displayLink = CADisplayLink(target: self, selector: #selector(updateRecordingTime))
             self.displayLink?.add(to: .current, forMode: .common)
             recordingTimeLabel.isHidden = false
-            /*
+            
             if #available(iOS 11.0, *) {
-                mediaRecorder.startRecording(mediaType: .MP4, videoCodecType: .h264, outputSize: CGSize(width: avCaptureModule?.quality?.width() ?? 640, height: avCaptureModule?.quality?.height() ?? 480))
+                mediaRecorder.startRecording(mediaType: .MP4, videoCodecType: .h264, outputSize: CGSize(width: 1920, height: 1080), orientationDevice: OrientationHelper.getDeviceOrientation())
             } else {
-                
-            }*/
+                mediaRecorder.startRecording(mediaType: .MP4, videoCodecType: AVVideoCodecType(rawValue: AVVideoCodecH264), outputSize: CGSize(width: 1920, height: 1080), orientationDevice: OrientationHelper.getDeviceOrientation())
+            }
         }
     }
     
@@ -124,6 +123,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         filter.previewDelegate = previewView
         previewView.RTMPDelegate = self.streamModule
+        previewView.filterDelegate = mediaRecorder;
         avCaptureModule?.microphoneCapture?.audioDelegate = streamModule
         avCaptureModule?.cameraCapture?.cameraDelegate = filter
         //        previewView.mirroring = true;
@@ -168,7 +168,14 @@ class ViewController: UIViewController {
                 if(authorizationStatus == .authorized){
                     saveFile(url: url)
                 }else{
+                    // You must deelete this file at this url
+                    do{
+                        try FileManager.default.removeItem(at: url)
+                    }catch{
+                        print("Error when remove file")
+                    }
                     self.displayAlert(title: "Failed", message: "User should authorize this application to access photos data to save this video", actionTitle: "OK")
+                    
                 }
             }
         }else{
